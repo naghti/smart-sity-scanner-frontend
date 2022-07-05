@@ -1,0 +1,23 @@
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 16px;
+    width: 100%;
+    background: #02AED0;
+    border: 2px solid #EFF0F7;
+    box-shadow: 8px 8px 24px rgba(2, 2, 70, 0.05);
+    border-radius: 8px;
+    margin: 5px 0;
+    cursor: pointer;
+
+
+}
+.button__p{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18.7377px;
+    line-height: 31px;
+    color: #FFFFFF;
+}
