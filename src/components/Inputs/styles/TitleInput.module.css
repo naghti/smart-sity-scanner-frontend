@@ -26,6 +26,9 @@
     padding: 5px 5px 11px ;
     border-bottom: 1px solid rgba(0, 0, 0, 0.44);
 }
+.titleInput__input_error::placeholder {
+    color: red;
+}
 .titleInput__image {
     cursor: pointer;
     position: absolute;

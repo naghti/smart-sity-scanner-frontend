@@ -32,11 +32,13 @@ const SignIn = () => {
                         <TitleInput
                             value={'ФИО'}
                             type={"text"}
+                            required={true}
                         />
                         <TitleInput
                             value={'компания'}
                             placeholder={'компанию'}
                             type={"text"}
+                            required={true}
                         />
                         <TitleInput
                             value={'должость'}
@@ -45,13 +47,16 @@ const SignIn = () => {
                         <TitleInput
                             value={'телефон'}
                             type={"tel"}
+                            required={true}
                         />
                         <TitleInput
                             value={'email'}
                             type={"email"}
+                            required={true}
                         />
                         <TitleInput
                             value={'пароль'}
+                            required={true}
                             image={crossedEyeImage}
                             type={ passwordHide ? "password" : "text"}
                             onClick={() => setPasswordHide(!passwordHide)}

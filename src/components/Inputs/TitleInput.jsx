@@ -1,7 +1,22 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styles from './styles/TitleInput.module.css'
 
-const TitleInput = ({value,image,type,placeholder, ...props}) => {
+const TitleInput = ({value,image,type,placeholder,required, ...props}) => {
+
+    let [error,setError] = useState(false)
+    let [errorMessage,setErrorMessage] = useState('')
+
+    function requiredCheck(e) {
+        if (required){
+
+            if( e.target.value == '' ){
+                setError(true)
+                setErrorMessage(`${value} не может быть пустым`)
+            }
+
+        }
+    }
+
     return (
         <div className={styles.titleInput}>
             <p className={styles.titleInput__title}>{value}</p>
@@ -18,8 +33,27 @@ const TitleInput = ({value,image,type,placeholder, ...props}) => {
 
                 <input
                     type={type}
-                    placeholder={`Введите ${placeholder ? placeholder : value}`}
-                    className={styles.titleInput__input}
+                    placeholder={
+                        error
+                        ?
+                            errorMessage
+                        :
+                            `Введите ${placeholder ? placeholder : value}`
+                    }
+
+                    onBlur={
+                        (e) => requiredCheck(e)
+                    }
+
+                    className={
+                        error
+                        ?
+                            styles.titleInput__input
+                            + ' ' +
+                            styles.titleInput__input_error
+                        :
+                            styles.titleInput__input
+                    }
                 />
             </div>
         </div>

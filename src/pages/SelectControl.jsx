@@ -16,8 +16,14 @@ const SelectControl = () => {
                 <div className={styles.index__form}>
 
                     <div className={styles.index__selectRole}>
-                        <BlueButton text={'Калькулятор соответствия уровня цифровизации городского хозяйства'}/>
-                        <BlueButton text={'Сканер Умного Города'} click={() => router(`/scanner`)}/>
+                        <BlueButton
+                            text={'Калькулятор соответствия уровня цифровизации городского хозяйства'}
+                            click={() => router(`/calculator`)}
+                        />
+                        <BlueButton
+                            text={'Сканер Умного Города'}
+                            click={() => router(`/scanner`)}
+                        />
                     </div>
                 </div>
 

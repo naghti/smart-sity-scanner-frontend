@@ -17,32 +17,17 @@
 .smartCityScanner__selection {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
     gap: 10px 10px;
-    grid-auto-flow: row;
     grid-template-areas:
     "rei1 rei1 rei2 rei2 rei3 rei4"
-    "rei6 rei7 rei8 rei8 rei3 rei5"
+    "rei5 rei6 rei7 rei7 rei3 rei8"
     "rei9 rei10 rei10 rei11 rei12 rei12"
     "rei13 rei13 rei14 rei15 rei15 rei16"
-    "rei17 rei17 rei14 rei18 rei18 rei16";
+    "rei17 rei17 rei14 rei18 rei18 rei16"
+    "rei19 rei20 rei20 rei21 rei22 rei22";
 }
-@media (max-width: 1299px) {
-    .smartCityScanner__selection {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-        grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
-        gap: 10px 10px;
-        grid-auto-flow: row;
-        grid-template-areas:
-        "rei1 rei1 rei2 rei2 rei3"
-        "rei4 rei5 rei6 rei6 rei3"
-        "rei7 rei7 rei8 rei9 rei9"
-        "rei10 rei10 rei11 rei12 rei12"
-        "rei13 rei13 rei14 rei15 rei15"
-        "rei16 rei16 rei18 rei17 rei17";
-    }
-}
+
 .smartCityScanner__selectTitle{
     font-family: 'Inter';
     font-style: normal;
@@ -54,7 +39,8 @@
 }
 .smartCityScanner__item {
     border: 1px solid red;
-    position: relative; min-height: 200px;
+    position: relative;
+    min-height: 200px;
     background: #436AEB;
     border: 1px solid #BFB8B8;border: 1px solid #BFB8B8;
     border-radius: 10px;

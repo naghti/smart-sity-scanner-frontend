@@ -6,6 +6,7 @@ import SelectRole from "./pages/SelectRole";
 import SignUp from "./pages/SignUp";
 import SelectControl from "./pages/SelectControl";
 import SmartCityScanner from "./pages/SmartCityScanner";
+import Calculator from "./pages/Calculator";
 function App() {
   return (
     <div className="App">
@@ -15,6 +16,7 @@ function App() {
           <Route path='/signin/:role' element={<SignIn/>}/>
           <Route path='/signup' element={<SignUp/>}/>
           <Route path='/control' element={<SelectControl/>}/>
+          <Route path='/calculator' element={<Calculator/>}/>
           <Route path='/scanner' element={<SmartCityScanner/>}/>
 
           <Route path='*' exact element={<SelectRole/>} />

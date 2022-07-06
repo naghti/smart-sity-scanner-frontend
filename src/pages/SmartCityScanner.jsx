@@ -5,6 +5,7 @@ import backgroundImage from '../images/background.png'
 import styles from './styles/SmartCityScanner.module.css'
 import AccountStatus from "../components/boxs/AccountStatus";
 import state from '../states/state'
+import Footer from "../components/footers/Footer";
 
 const SmartCityScanner = () => {
     return (
@@ -24,15 +25,28 @@ const SmartCityScanner = () => {
                 <div className={styles.smartCityScanner__selection}>
                     {
                         state.scanerSelections.map((selection,index) => (
-                           <div className={styles.smartCityScanner__item} style={{gridArea:`rei${++index}`}}>
-                               <p className={styles.smartCityScanner__selectTitle}>
-                                   {selection}
+                           <div
+                               className={styles.smartCityScanner__item}
+                               style={{
+                                   gridArea:`rei${++index}`,
+                                   background:`linear-gradient(
+                                       180deg,
+                                       rgba(67, 106, 235, 0) 0%,
+                                       #436AEB 87.81%, #436AEB 100%),
+                                       url(${selection.photo} )`
+                               }}
+                           >
+                               <p
+                                   className={styles.smartCityScanner__selectTitle}
+                               >
+                                   {selection.name}
                                </p>
                            </div>
                         ))
                     }
                 </div>
             </div>
+            <Footer/>
         </div>
     );
 };
