@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
 import styles from "./styles/index.module.css"
 import townImage from "../images/town.png"
-import BlueButton from "../components/buttons/BlueButton";
+import LightBlueButton from "../components/buttons/LightBlueButton";
 import WhiteButton from "../components/buttons/WhiteButton";
 import TitleInput from "../components/Inputs/TitleInput";
 import peopleImage from '../images/people.png'
@@ -12,16 +12,24 @@ import state from "../states/state";
 const SignIn = () => {
     const router = useNavigate()
     const params = useParams()
-    console.log(params.role)
-    // if(  !state.roles.filter((e) => e == params.role).length  ){
-    //     router(`registration/fr`)
-    // }
+
+    // возможность скрыть пароль и открыть
     const [passwordHide,setPasswordHide] = useState(true)
+
+    const [info,setInfo] = useState({
+        fullName: '',
+        company: '',
+        position: '',
+        number: '',
+        email: '',
+        password: '',
+    })
+
 
     return (
         // <button onClick={() => router(`/section`)} >buttonbuttonbutton</button>
         <div className={styles.index}>
-            <div className={styles.index__box} style={{padding:'50px 0'}}>
+            <div className={styles.index__box} style={{padding:'50px 10px'}}>
                 <img src={townImage} alt="town" className={styles.index__image}/>
                 <h2 className={styles.index__title}>Сканер Умного Города</h2>
 
@@ -30,45 +38,75 @@ const SignIn = () => {
 
                     <div style={{width:300,margin:'40px 0 20px'}}>
                         <TitleInput
-                            value={'ФИО'}
+                            text={'ФИО'}
                             type={"text"}
                             required={true}
+                            value={info.fullName}
+                            changeValue={(e) => {
+                                setInfo({...info,fullName: e })
+                            }}
                         />
                         <TitleInput
-                            value={'компания'}
-                            placeholder={'компанию'}
+                            text={'компания'}
+                            placeholder={'Введите компанию'}
                             type={"text"}
                             required={true}
+                            value={info.company}
+                            changeValue={(e) => {
+                                setInfo({...info,company: e })
+                            }}
                         />
                         <TitleInput
-                            value={'должость'}
+                            text={'должость'}
                             type={"text"}
+                            value={info.position}
+                            changeValue={(e) => {
+                                setInfo({...info,position: e })
+                            }}
                         />
                         <TitleInput
-                            value={'телефон'}
+                            text={'телефон'}
                             type={"tel"}
                             required={true}
+                            start={'+7'}
+                            value={info.number}
+                            changeValue={(e) => {
+                                setInfo({...info,number: e })
+                            }}
                         />
                         <TitleInput
-                            value={'email'}
+                            text={'email'}
                             type={"email"}
                             required={true}
+                            value={info.email}
+                            changeValue={(e) => {
+                                setInfo({...info,email: e })
+                            }}
                         />
                         <TitleInput
-                            value={'пароль'}
+                            text={'пароль'}
                             required={true}
                             image={crossedEyeImage}
                             type={ passwordHide ? "password" : "text"}
                             onClick={() => setPasswordHide(!passwordHide)}
+                            value={info.password}
+                            changeValue={(e) => {
+                                setInfo({...info,password: e })
+                            }}
                         />
                     </div>
 
-                    <BlueButton text={'Войти'}/>
+                    <LightBlueButton
+                        text={'Войти'}
+                        click={() => console.log(info)}
+                    />
 
                     <p className={styles.index__grayText}>У вас уже есть аккаунт?</p>
                     <p
                         className={styles.index__grayText + ' ' + styles.index__darkText}
-                        onClick={() => router('/signin')}
+                        onClick={() => {
+                            router('/')
+                        }}
                     >Войти</p>
                 </div>
 

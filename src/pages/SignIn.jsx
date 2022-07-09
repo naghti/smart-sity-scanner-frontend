@@ -2,24 +2,29 @@ import React, {useState} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
 import styles from "./styles/index.module.css"
 import townImage from "../images/town.png"
-import BlueButton from "../components/buttons/BlueButton";
+import LightBlueButton from "../components/buttons/LightBlueButton";
 import WhiteButton from "../components/buttons/WhiteButton";
 import TitleInput from "../components/Inputs/TitleInput";
 import peopleImage from '../images/people.png'
 import crossedEyeImage from '../images/crossedEye.png'
 import state from "../states/state";
+import UnknowPage from "./UnknowPage";
 
 const SignIn = () => {
     const router = useNavigate()
     const params = useParams()
-    console.log(params.role)
+
+    // возможность скрыть пароль и открыть
+    const [passwordHide,setPasswordHide] = useState(true)
+
+    // проверка валидности роли в url
     if(
-        !state.roles.filter((e) => e == params.role)
+        !state.roles
+        .filter((e) => e == params.role)
         .length
     ){
-        router(`/`)
+        return <UnknowPage/>
     }
-    const [passwordHide,setPasswordHide] = useState(true)
 
     function login() {
         if (params.role == "administration") {
@@ -37,21 +42,21 @@ const SignIn = () => {
                 <div className={styles.index__form}>
                     <h5 className={styles.index__formTitle}>Войти на сайт</h5>
 
-                    <div style={{width:300,margin:'40px 0 20px'}}>
+                    <div style={{width:300,margin:'40px 0 10px'}}>
                         <TitleInput
-                            value={'логин'}
+                            text={'логин'}
                             image={peopleImage}
                             type={"text"}
                         />
                         <TitleInput
-                            value={'пароль'}
+                            text={'пароль'}
                             image={crossedEyeImage}
                             type={ passwordHide ? "password" : "text"}
                             onClick={() => setPasswordHide(!passwordHide)}
                         />
                     </div>
 
-                    <BlueButton
+                    <LightBlueButton
                         text={'Войти'}
                         click={() => login()}
                     />

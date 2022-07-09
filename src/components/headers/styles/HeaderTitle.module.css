@@ -16,3 +16,9 @@
     align-items: flex-end;
     color: #FFFFFF;
 }
+
+@media (max-width: 450px) {
+    .headerTitle{
+        padding: 20px 20px;
+    }
+}

@@ -11,3 +11,11 @@
     "rei13 rei13 rei14 rei15 rei15 rei16"
     "rei17 rei17 rei14 rei18 rei18 rei16";
 }
+
+@media (max-width: 450px) {
+    .сalculator__selection {
+        display: flex;
+        flex-direction: column;
+
+    }
+}

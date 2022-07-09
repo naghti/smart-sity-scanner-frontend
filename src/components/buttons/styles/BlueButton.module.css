@@ -1,16 +1,10 @@
 .button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     padding: 10px 16px;
-    width: 100%;
-    background: #02AED0;
-    border: 2px solid #EFF0F7;
+    background: #436AEB;
+    border: 1px solid rgba(0, 0, 0, 0.4);
     box-shadow: 8px 8px 24px rgba(2, 2, 70, 0.05);
     border-radius: 8px;
-    margin: 5px 0;
     cursor: pointer;
-
 
 }
 .button__p{
@@ -20,4 +14,7 @@
     font-size: 18.7377px;
     line-height: 31px;
     color: #FFFFFF;
+}
+.button__img{
+    width: 30px;
 }

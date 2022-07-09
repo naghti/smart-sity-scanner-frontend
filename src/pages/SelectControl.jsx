@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
 import styles from "./styles/index.module.css"
 import townImage from "../images/town.png"
-import BlueButton from "../components/buttons/BlueButton";
+import LightBlueButton from "../components/buttons/LightBlueButton";
 
 const SelectControl = () => {
     const router = useNavigate()
@@ -16,11 +16,11 @@ const SelectControl = () => {
                 <div className={styles.index__form}>
 
                     <div className={styles.index__selectRole}>
-                        <BlueButton
+                        <LightBlueButton
                             text={'Калькулятор соответствия уровня цифровизации городского хозяйства'}
                             click={() => router(`/calculator`)}
                         />
-                        <BlueButton
+                        <LightBlueButton
                             text={'Сканер Умного Города'}
                             click={() => router(`/scanner`)}
                         />

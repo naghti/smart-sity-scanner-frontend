@@ -3,7 +3,9 @@
 }
 .smartCityScanner__box{
     padding: 20px 100px 100px;
-
+    width: 1400px;
+    max-width: 100vw;
+    margin: 0 auto;
 }
 .smartCityScanner__title{
     font-family: 'Inter';
@@ -14,18 +16,37 @@
     color: rgba(0, 0, 0, 0.6);
 }
 
-.smartCityScanner__selection {
+.smartCityScanner__selectionSocialSphere {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
     gap: 10px 10px;
     grid-template-areas:
-    "rei1 rei1 rei2 rei2 rei3 rei4"
-    "rei5 rei6 rei7 rei7 rei3 rei8"
-    "rei9 rei10 rei10 rei11 rei12 rei12"
-    "rei13 rei13 rei14 rei15 rei15 rei16"
-    "rei17 rei17 rei14 rei18 rei18 rei16"
-    "rei19 rei20 rei20 rei21 rei22 rei22";
+    "socialSphere1 socialSphere1 socialSphere2 socialSphere3 socialSphere3"
+    "socialSphere4 socialSphere5 socialSphere2 socialSphere6 socialSphere6"
+    "socialSphere7 socialSphere7 socialSphere8 socialSphere8 socialSphere9"
+    "socialSphere10 socialSphere10 socialSphere11 . .";
+    margin-bottom: 80px;
+}
+.smartCityScanner__selectionUrbanEconomy {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 10px 10px;
+    grid-template-areas:
+    "urbanEconomy1 urbanEconomy1 urbanEconomy2 urbanEconomy3 urbanEconomy4"
+    "urbanEconomy5 urbanEconomy5 urbanEconomy6 urbanEconomy6 urbanEconomy7"
+    "urbanEconomy8 urbanEconomy8 . . .";
+    margin-bottom: 80px;
+}
+.smartCityScanner__selectionBusiness {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 10px 10px;
+    grid-template-areas:
+    "business1 business1 business2 business3 business4";
+    margin-bottom: 80px;
 }
 
 .smartCityScanner__selectTitle{
@@ -36,16 +57,48 @@
     line-height: 29px;
     display: flex;
     color: #FFFFFF;
+    z-index: 3;
+    max-width: 100%;
+
 }
 .smartCityScanner__item {
-    border: 1px solid red;
     position: relative;
     min-height: 200px;
-    background: #436AEB;
-    border: 1px solid #BFB8B8;border: 1px solid #BFB8B8;
+    border: 1px solid #BFB8B8;
     border-radius: 10px;
     display: flex;
     justify-content: flex-start;
     align-items: flex-end;
     padding: 10px;
+    transition: all 0.3s ease;
+
+}
+.smartCityScanner__item:hover{
+    transform: scale(1.03);
+}
+.smartCityScanner__selectShadow{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform: translate(-10px, 10px);
+    border-radius: 10px;
+}
+.smartCityScanner__selectShadow_black{
+    background: #FF7C00FF;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform: translate(-10px, 10px);
+    border-radius: 10px;
+    z-index: 2;
+}
+
+@media (max-width: 450px) {
+    .smartCityScanner__box{
+        padding: 20px 10px 10px;
+    }
+    .smartCityScanner__item {
+        background-size: 100% 100%!important;
+        background-position: center center!important;
+    }
 }

@@ -1,0 +1,20 @@
+.titleUnderline{
+
+}
+.titleUnderline__title{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 58px;
+    display: flex;
+    align-items: flex-end;
+
+    color: rgba(0, 0, 0, 0.75);
+}
+.titleUnderline__underline{
+    border-radius: 34px;
+    height: 10px;
+    width: 80%;
+    margin-bottom: 40px;
+}

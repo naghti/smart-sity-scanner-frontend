@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import styles from './styles/TitleInput.module.css'
 
-const TitleInput = ({value,image,type,placeholder,required, ...props}) => {
+const TitleInput = ({ text , image , type , placeholder , required , start , value , changeValue , ...props}) => {
 
     let [error,setError] = useState(false)
     let [errorMessage,setErrorMessage] = useState('')
@@ -11,7 +11,7 @@ const TitleInput = ({value,image,type,placeholder,required, ...props}) => {
 
             if( e.target.value == '' ){
                 setError(true)
-                setErrorMessage(`${value} не может быть пустым`)
+                setErrorMessage(`${text} не может быть пустым`)
             }
 
         }
@@ -19,7 +19,7 @@ const TitleInput = ({value,image,type,placeholder,required, ...props}) => {
 
     return (
         <div className={styles.titleInput}>
-            <p className={styles.titleInput__title}>{value}</p>
+            <p className={styles.titleInput__title}>{text}</p>
             <div className={styles.titleInput__inputBox}>
                 {
                     image != undefined &&
@@ -30,15 +30,24 @@ const TitleInput = ({value,image,type,placeholder,required, ...props}) => {
                             {...props}
                         />
                 }
-
+                {
+                    start &&
+                    <p
+                        className={styles.titleInput__start}
+                    >
+                        {start}
+                    </p>
+                }
                 <input
                     type={type}
+                    value={value}
+                    onChange={(e) => changeValue(e.target.value)}
                     placeholder={
                         error
                         ?
                             errorMessage
                         :
-                            `Введите ${placeholder ? placeholder : value}`
+                            `${placeholder ? placeholder : 'Введите ' + text}`
                     }
 
                     onBlur={

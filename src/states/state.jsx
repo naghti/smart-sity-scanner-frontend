@@ -14,9 +14,16 @@ import EntrepreneurshipPhoto from '../images/Entrepreneurship.png'
 import EnergyPhoto from '../images/Energy.png'
 import sciencePhoto from '../images/science.png'
 import ConstructionPhoto from '../images/Construction.png'
+import ConstructionMiniPhoto from '../images/ConstructionMini.png'
 import SocialSpherePhoto from '../images/SocialSphere.png'
 import sportPhoto from '../images/sport.png'
+import tourismPhoto from '../images/tourism.png'
+import archivesPhoto from '../images/archives.png'
+import RealEstatePhoto from '../images/RealEstate.png'
+import rentPhoto from '../images/rent.png'
+import repairPhoto from '../images/repair.png'
 import digitalTransformationPhoto from '../images/digitalTransformation.png'
+import calculatorButtonsInfo from "./calculatorButtonsInfo";
 
 class State {
     constructor() {
@@ -30,7 +37,8 @@ class State {
     CalculatorSelections = [
         {
           name: 'Обратная связь с гражданами',
-          photo: feedbackPhoto
+          photo: feedbackPhoto,
+          info: calculatorButtonsInfo.info.FeedbackFromCitizens
         },
         {
           name: 'Городская среда',
@@ -57,7 +65,7 @@ class State {
           photo: sportPhoto
         },
         {
-          name: 'Геоинформационые технологии',
+          name: 'Геоинформационные технологии',
           photo: geoinformationTechnologiesPhoto
         },
         {
@@ -101,96 +109,106 @@ class State {
           photo: digitalTransformationPhoto
         },
     ]
-    scanerSelections = [
-        {
-            name: 'Обратная связь с гражданами',
-            photo: feedbackPhoto
-        },
-        {
-            name: 'Благоустройство територии',
-            photo: educationPhoto
-        },
-        {
-            name: 'Культура',
-            photo: educationPhoto
-        },
-        {
-            name: 'Безопасность',
-            photo: educationPhoto
-        },
-        {
-            name: 'Образование',
-            photo: safetyPhoto
-        },
-        {
-            name: 'ЖКХ',
-            photo: hcsPhoto
-        },
-        {
-            name: 'Недвижимость',
-            photo: educationPhoto
-        },
-        {
-            name: 'Спорт',
-            photo: educationPhoto
-        },
-        {
-            name: 'Транспорт',
-            photo: educationPhoto
-        },
-        {
-            name: 'Здравоохранение',
-            photo: educationPhoto
-        },
-        {
-            name: 'Экология',
-            photo: educationPhoto
-        },
-        {
-            name: 'Молодежная политика',
-            photo: educationPhoto
-        },
-        {
-            name: 'Предпринимательство',
-            photo: educationPhoto
-        },
-        {
-            name: 'Капитальный ремонт',
-            photo: educationPhoto
-        },
-        {
-            name: 'Наука и высшая школа',
-            photo: educationPhoto
-        },
-        {
-            name: 'Строительство',
-            photo: educationPhoto
-        },
-        {
-            name: 'Социальная сфера',
-            photo: educationPhoto
-        },
-        {
-            name: 'Цифровая трансформация',
-            photo: educationPhoto
-        },
-        {
-            name: "item1",
-            photo: educationPhoto
-        },
-        {
-            name: "item2",
-            photo: educationPhoto
-        },
-        {
-            name: "item3",
-            photo: educationPhoto
-        },
-        {
-            name: "item4",
-            photo: educationPhoto
-        },
-    ]
+    scanerSelections = {
+        socialSphere : [
+            {
+                name: 'Обратная связь с гражданами',
+                photo: feedbackPhoto
+            },
+            {
+                name: 'Культура',
+                photo: culturePhoto
+            },
+            {
+                name: 'Молодежная политика',
+                photo: youthPolicyPhoto
+            },
+            {
+                name: 'Спорт',
+                photo: sportPhoto
+            },
+            {
+                name: 'Образование',
+                photo: educationPhoto
+            },
+            {
+                name: 'Наука и высшая школа',
+                photo: sciencePhoto
+            },
+            {
+                name: 'Социальная сфера',
+                photo: SocialSpherePhoto
+            },
+            {
+                name: 'Цифровая трансформация',
+                photo: digitalTransformationPhoto
+            },
+            {
+                name: "Туризм",
+                photo: tourismPhoto
+            },
+            {
+                name: 'Здравоохранение',
+                photo: healthcarePhoto
+            },
+            {
+                name: "архивы",
+                photo: archivesPhoto
+            },
+        ],
+        urbanEconomy : [
+            {
+                name: 'Благоустройство територии',
+                photo: urbanEnvironmentPhoto
+            },
+            {
+                name: 'ЖКХ',
+                photo: hcsPhoto
+            },
+            {
+                name: 'Безопасность',
+                photo: safetyPhoto
+            },
+            {
+                name: 'Транспорт',
+                photo: transportPhoto
+            },
+            {
+                name: 'Капитальный ремонт',
+                photo: repairPhoto
+            },
+            {
+                name: 'Недвижимость',
+                photo: RealEstatePhoto
+            },
+            {
+                name: 'Экология',
+                photo: ecologyPhoto
+            },
+            {
+                name: "цифровая трансформация",
+                photo: digitalTransformationPhoto
+            },
+        ],
+        business : [
+            {
+                name: "Промышленность",
+                photo: EntrepreneurshipPhoto
+            },
+            {
+                name: "Аренда",
+                photo: rentPhoto
+            },
+            {
+                name: "Инновации",
+                photo: educationPhoto
+            },
+            {
+                name: "Строительство",
+                photo: ConstructionMiniPhoto
+            },
+        ],
+    }
 }
 
 export default new State()

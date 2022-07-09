@@ -1,0 +1,18 @@
+.button{
+    padding: 10px 30px;
+    cursor: pointer;
+    background: #02AED0;
+    border: 2px solid #EFF0F7;
+    box-shadow: 8.32785px 8.32785px 24.9835px rgba(2, 2, 70, 0.05);
+    border-radius: 8.32785px;
+    width: 100%;
+}
+
+.button__p{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18.7377px;
+    line-height: 31px;
+    color: #FFFFFF;
+}

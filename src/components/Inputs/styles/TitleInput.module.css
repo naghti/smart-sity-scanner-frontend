@@ -7,6 +7,8 @@
 .titleInput__inputBox{
     width: 100%;
     position: relative;
+    display: flex;
+    align-items: center;
 }
 .titleInput__title{
     font-family: 'Public Sans', sans-serif;
@@ -33,4 +35,15 @@
     cursor: pointer;
     position: absolute;
     right: 5px;
+}
+.titleInput__start{
+    padding: 5px 5px 11px ;
+    font-family: 'Public Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.44);
+    color: rgba(0, 0, 0, 0.54);
+
 }

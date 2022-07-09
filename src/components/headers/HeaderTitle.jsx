@@ -5,11 +5,17 @@ const HeaderTitle = ({background,text}) => {
     return (
         <div
             className={styles.headerTitle}
-            style={{background: `url(${background})`}}
+            style={{background: `center/cover url(${background})`}}
         >
-            <h4
-                className={styles.headerTitle__title}
-            >{text}</h4>
+            <div
+                style={{
+                    width: '100%', maxWidth: 1300, margin: '0 auto'
+                }}
+            >
+                <h4
+                    className={styles.headerTitle__title}
+                >{text}</h4>
+            </div>
         </div>
     );
 };

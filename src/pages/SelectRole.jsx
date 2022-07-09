@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
 import styles from "./styles/index.module.css"
 import townImage from "../images/town.png"
-import BlueButton from "../components/buttons/BlueButton";
+import LightBlueButton from "../components/buttons/LightBlueButton";
 const SelectRole = () => {
     const router = useNavigate()
 
@@ -15,9 +15,9 @@ const SelectRole = () => {
                 <div className={styles.index__form}>
 
                         <div className={styles.index__selectRole}>
-                            <BlueButton text={'Администрация'} click={() => router(`/signin/administration`)}/>
-                            <BlueButton text={'Бизнес'} click={() => router(`/signin/business`)}/>
-                            <BlueButton text={'Житель'} click={() => router(`/signin/citizen`)}/>
+                            <LightBlueButton text={'Администрация'} click={() => router(`/signin/administration`)}/>
+                            <LightBlueButton text={'Бизнес'} click={() => router(`/signin/business`)}/>
+                            <LightBlueButton text={'Житель'} click={() => router(`/signin/citizen`)}/>
                         </div>
                 </div>
 

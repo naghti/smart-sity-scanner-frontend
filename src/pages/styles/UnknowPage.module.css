@@ -1,0 +1,32 @@
+.unknowPage{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.unknowPage__content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.unknowPage__title{
+    color: rgb(2,174,208);
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 86px;
+    line-height: 62px;
+}
+
+.unknowPage__text{
+    color: rgb(43,47,46);
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 62px;
+}

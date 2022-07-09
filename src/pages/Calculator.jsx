@@ -7,15 +7,22 @@ import calculatorStyles from './styles/Calculator.module.css'
 import AccountStatus from "../components/boxs/AccountStatus";
 import state from '../states/state'
 import Footer from "../components/footers/Footer";
+import {useNavigate} from "react-router-dom";
 
 const Calculator = () => {
+
+    const router = useNavigate()
+
+
     return (
-        <div>
-            <Header/>
-            <HeaderTitle
-                background={backgroundImage}
-                text={'Области цифровизации городского хозяйства'}
-            />
+        <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '100vh'}}>
+            <div>
+                <Header/>
+                <HeaderTitle
+                    background={backgroundImage}
+                    text={'Области цифровизации городского хозяйства'}
+                />
+            </div>
             <div className={scannerStyles.smartCityScanner__box}>
                 <p className={scannerStyles.smartCityScanner__title}>
                     Данный раздел позволяет рассчитать показатели цифровизации городского хозяйства согласно стандарту Умного Города в
@@ -35,9 +42,12 @@ const Calculator = () => {
                                             180deg,
                                             rgba(67, 106, 235, 0) 0%,
                                             #436AEB 87.81%, #436AEB 100%),
-                                            no-repeat center/100%
+                                            no-repeat center/103% 103%
                                             url(${selection.photo})
-\                                    `}}
+                                    `}}
+                                onClick={() => {
+                                    router(`${selection.name}`)
+                                }}
                             >
                                 <p
                                     className={scannerStyles.smartCityScanner__selectTitle}
