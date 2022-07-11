@@ -22,6 +22,10 @@ import archivesPhoto from '../images/archives.png'
 import RealEstatePhoto from '../images/RealEstate.png'
 import rentPhoto from '../images/rent.png'
 import repairPhoto from '../images/repair.png'
+import housePhoto from '../images/house.png'
+import purchasesPhoto from '../images/purchases.png'
+import libraryPhoto from '../images/library.png'
+import entertainmentPhoto from '../images/entertainment.png'
 import digitalTransformationPhoto from '../images/digitalTransformation.png'
 import calculatorButtonsInfo from "./calculatorButtonsInfo";
 
@@ -136,7 +140,7 @@ class State {
                 photo: sciencePhoto
             },
             {
-                name: 'Социальная сфера',
+                name: 'Соцзащита',
                 photo: SocialSpherePhoto
             },
             {
@@ -152,13 +156,13 @@ class State {
                 photo: healthcarePhoto
             },
             {
-                name: "архивы",
+                name: "Архивы",
                 photo: archivesPhoto
             },
         ],
         urbanEconomy : [
             {
-                name: 'Благоустройство територии',
+                name: 'Благоустройство территории',
                 photo: urbanEnvironmentPhoto
             },
             {
@@ -186,7 +190,7 @@ class State {
                 photo: ecologyPhoto
             },
             {
-                name: "цифровая трансформация",
+                name: "Цифровая трансформация",
                 photo: digitalTransformationPhoto
             },
         ],
@@ -209,6 +213,57 @@ class State {
             },
         ],
     }
+
+    CalculatorSelectionsCitizen = [
+        {
+            name: 'Дом',
+            photo: housePhoto,
+        },
+        {
+            name: 'Парк',
+            photo: urbanEnvironmentPhoto
+        },
+        {
+            name: 'Покупки',
+            photo: purchasesPhoto,
+        },
+        {
+            name: 'Библиотека',
+            photo: libraryPhoto
+        },
+        {
+            name: 'Образование',
+            photo: educationPhoto,
+        },
+        {
+            name: 'ЖКХ',
+            photo: hcsPhoto
+        },
+        {
+            name: 'Экскурсии',
+            photo: geoinformationTechnologiesPhoto,
+        },
+        {
+            name: 'Здоровье',
+            photo: sportPhoto
+        },
+        {
+            name: 'Транспорт',
+            photo: transportPhoto,
+        },
+        {
+            name: 'Развлечения',
+            photo: entertainmentPhoto
+        },
+        {
+            name: 'Экология',
+            photo: ecologyPhoto,
+        },
+        {
+            name: 'Участие в жизни города',
+            photo: youthPolicyPhoto
+        },
+    ]
 }
 
 export default new State()

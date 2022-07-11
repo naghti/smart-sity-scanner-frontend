@@ -1,0 +1,21 @@
+.scannerPage{
+
+}
+
+.scannerPage__checkbox{
+    width: 24px;
+    height: 24px;
+    margin-right: 16px;
+    position: absolute;
+
+}
+
+.scannerPage__checkboxTitle{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 18px;
+    color: rgba(0, 0, 0, 0.8);
+    margin-left: 40px;
+}

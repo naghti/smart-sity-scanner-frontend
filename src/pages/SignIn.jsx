@@ -30,6 +30,9 @@ const SignIn = () => {
         if (params.role == "administration") {
             router('/control')
         }
+        if (params.role == "citizen") {
+            router('/scanner/citizen')
+        }
     }
 
     return (

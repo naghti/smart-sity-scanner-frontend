@@ -8,10 +8,12 @@ import state from '../states/state'
 import Footer from "../components/footers/Footer";
 import TitleUnderline from "../components/TitleUnderline";
 import {CSSTransition, TransitionGroup} from "react-transition-group";
+import {useNavigate} from "react-router-dom";
 
 const SmartCityScanner = () => {
 
     let [active,setActive] = useState(false)
+    const router = useNavigate()
 
     return (
         <div>
@@ -46,6 +48,7 @@ const SmartCityScanner = () => {
                                    }}
                                    onMouseEnter={() => setActive(selection.name)}
                                    onMouseLeave={() => setActive(false)}
+                                   onClick={() => router(`/scanner/administration/${selection.name}`)}
                                >
                                    <div
                                        className={styles.smartCityScanner__selectShadow}
@@ -79,6 +82,7 @@ const SmartCityScanner = () => {
                                 }}
                                 onMouseEnter={() => setActive(selection.name)}
                                 onMouseLeave={() => setActive(false)}
+                                onClick={() => router(`/scanner/administration/${selection.name}`)}
                             >
                                 <div
                                     className={styles.smartCityScanner__selectShadow}
@@ -110,6 +114,7 @@ const SmartCityScanner = () => {
                                 }}
                                 onMouseEnter={() => setActive(selection.name)}
                                 onMouseLeave={() => setActive(false)}
+                                onClick={() => router(`/scanner/administration/${selection.name}`)}
                             >
                                 <div
                                     className={styles.smartCityScanner__selectShadow}

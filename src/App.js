@@ -9,6 +9,8 @@ import SmartCityScanner from "./pages/SmartCityScanner";
 import Calculator from "./pages/Calculator";
 import CalculatorPage from "./pages/CalculatorPage";
 import UnknowPage from "./pages/UnknowPage";
+import ScannerPage from "./pages/ScannerPage";
+import SmartCityScannerCitizen from "./pages/SmartCityScannerCitizen";
 function App() {
   return (
     <div className="App">
@@ -21,6 +23,9 @@ function App() {
           <Route path='/calculator' element={<Calculator/>}/>
           <Route path='/calculator/:page' element={<CalculatorPage/>}/>
           <Route path='/scanner' element={<SmartCityScanner/>}/>
+          <Route path='/scanner/citizen' exact element={<SmartCityScannerCitizen/>}/>
+          <Route path='/scanner/:role/:page' exact element={<ScannerPage/>}/>
+          <Route path='/scanner/:page' exact element={<ScannerPage/>}/>
 
           <Route path='*' exact element={<UnknowPage/>} />
         </Routes>

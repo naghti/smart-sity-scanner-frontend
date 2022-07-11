@@ -10,3 +10,27 @@
     padding: 10px;
     background: white;
 }
+
+.header__titleBox{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.header__title{
+    margin: 0 20px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 19px;
+    line-height: 19px;
+    color: #FFFFFF;
+}
+
+
+@media (max-width: 576px) {
+    .header{
+        flex-direction: column;
+    }
+}

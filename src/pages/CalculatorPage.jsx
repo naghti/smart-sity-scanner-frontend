@@ -72,22 +72,15 @@ const CalculatorPage = () => {
                 <div className={styles.calculatorPage__buttons}>
                     <WhiteButton2
                         text={'Сохранить'}
-                        style={{margin: '0 30px 0 0'}}
+                        className={styles.calculatorPage__button}
                     />
                     <BlueButton
                         text={'Сохранить и перейти к результатам'}
-                        style={{margin: '0 30px 0 0'}}
+                        className={styles.calculatorPage__button}
                     />
                     <BlueButton
                         img={downloadImage}
-                        style={{
-                            borderRadius:'50%',
-                            width:50,
-                            height:50,
-                            display:'flex',
-                            justifyContent:'center',
-                            alignItems:'center'
-                        }}
+                        className={styles.calculatorPage__button_download}
                     />
                 </div>
 

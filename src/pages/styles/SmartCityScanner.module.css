@@ -93,12 +93,25 @@
     z-index: 2;
 }
 
-@media (max-width: 450px) {
+@media (max-width: 576px) {
     .smartCityScanner__box{
         padding: 20px 10px 10px;
     }
     .smartCityScanner__item {
-        background-size: 100% 100%!important;
-        background-position: center center!important;
+        background-size: cover!important;
+    }
+    /*.сalculator__selection {*/
+    /*}*/
+    .smartCityScanner__selectionSocialSphere {
+        display: flex;
+        flex-direction: column;
+    }
+    .smartCityScanner__selectionUrbanEconomy {
+        display: flex;
+        flex-direction: column;
+    }
+    .smartCityScanner__selectionBusiness {
+        display: flex;
+        flex-direction: column;
     }
 }

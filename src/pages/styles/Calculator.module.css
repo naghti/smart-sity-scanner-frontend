@@ -12,10 +12,9 @@
     "rei17 rei17 rei14 rei18 rei18 rei16";
 }
 
-@media (max-width: 450px) {
+@media (max-width: 576px) {
     .сalculator__selection {
         display: flex;
         flex-direction: column;
-
     }
 }

@@ -483,9 +483,7 @@ class CalculatorButtonsInfo {
                     ]
                 },
             ],
-            info: [
-                "",
-            ]
+            info: []
         },
         "Наука и высшая школа": {
             title: "Наука и высшая школа",
@@ -533,9 +531,7 @@ class CalculatorButtonsInfo {
                     ]
                 }
             ],
-            info: [
-                "",
-            ]
+            info: []
         },
         "Образование": {
             title: "Образование",
@@ -577,9 +573,7 @@ class CalculatorButtonsInfo {
                     ]
                 },
             ],
-            info: [
-                "",
-            ]
+            info: []
         },
         "Предпринимательство": {
             title: "Предпринимательство",
@@ -615,9 +609,7 @@ class CalculatorButtonsInfo {
                     ]
                 },
             ],
-            info: [
-                "",
-            ]
+            info: []
         },
         "Социальная сфера": {
             title: "Социальная сфера",
@@ -647,9 +639,7 @@ class CalculatorButtonsInfo {
                     ]
                 },
             ],
-            info: [
-                "",
-            ]
+            info: []
         },
         "Спорт": {
             title: "Спорт",
@@ -667,9 +657,7 @@ class CalculatorButtonsInfo {
                     ]
                 },
             ],
-            info: [
-                "",
-            ]
+            info: []
         },
         "Транспорт": {
             title: "Транспорт",
@@ -711,9 +699,7 @@ class CalculatorButtonsInfo {
                     ]
                 },
             ],
-            info: [
-                "",
-            ]
+            info: []
         },
         "Цифровая трансформация": {
             title: "Цифровая трансформация",
@@ -740,12 +726,10 @@ class CalculatorButtonsInfo {
                     ]
                 },
             ],
-            info: [
-                "",
-            ]
+            info: []
         },
         "Экология": {
-            title: "",
+            title: "Экология",
             content: [
                 {
                     number: "1",
@@ -757,9 +741,7 @@ class CalculatorButtonsInfo {
                     ]
                 },
             ],
-            info: [
-                "",
-            ]
+            info: []
         },
     }
 }

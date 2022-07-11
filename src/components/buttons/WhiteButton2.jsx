@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './styles/WhiteButton2.module.css'
 
-const WhiteButton2 = ({text, ...props}) => {
+const WhiteButton2 = ({text,className, ...props}) => {
     return (
-        <button className={styles.button} {...props}>
+        <button className={className ? className + ' ' + styles.button : styles.button} {...props}>
             <p className={styles.button__p}>
                 {text}
             </p>

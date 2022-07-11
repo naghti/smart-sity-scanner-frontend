@@ -1,0 +1,10 @@
+.smartCityScannerCitizen__selection {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 10px 10px;
+    grid-template-areas:
+    "CalculatorSelectionsCitizen1 CalculatorSelectionsCitizen1 CalculatorSelectionsCitizen2 CalculatorSelectionsCitizen2 CalculatorSelectionsCitizen3 CalculatorSelectionsCitizen4"
+    "CalculatorSelectionsCitizen5 CalculatorSelectionsCitizen6 CalculatorSelectionsCitizen7 CalculatorSelectionsCitizen7 CalculatorSelectionsCitizen3 CalculatorSelectionsCitizen8"
+    "CalculatorSelectionsCitizen9 CalculatorSelectionsCitizen10 CalculatorSelectionsCitizen10 CalculatorSelectionsCitizen11 CalculatorSelectionsCitizen12 CalculatorSelectionsCitizen12";
+}
