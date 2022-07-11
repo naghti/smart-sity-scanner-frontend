@@ -151,7 +151,9 @@
     justify-content: center;
     align-items: center;
 }
-
+.calculatorPage__inputsBox{
+    padding-left: 70px;
+}
 @media (max-width: 576px) {
     .calculatorPage__content{
         flex-direction: column;
@@ -170,4 +172,8 @@
         margin: 10px 0;
 
     }
+    .calculatorPage__inputsBox{
+        padding-left: 10px;
+    }
+
 }

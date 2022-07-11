@@ -54,7 +54,7 @@ const ScannerPage = () => {
                         <h4 className={CalculatorPageStyles.calculatorPage__contentTitle}>
                             {title}
                         </h4>
-                        <div style={{paddingLeft:70}}>
+                        <div className={CalculatorPageStyles.calculatorPage__inputsBox}>
                             {
                                 activePage.inputs.map(item => (
                                     <>

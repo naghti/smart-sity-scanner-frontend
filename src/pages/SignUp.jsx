@@ -97,7 +97,7 @@ const SignIn = () => {
                     </div>
 
                     <LightBlueButton
-                        text={'Войти'}
+                        text={'Зарегистрироваться'}
                         click={() => console.log(info)}
                     />
 
