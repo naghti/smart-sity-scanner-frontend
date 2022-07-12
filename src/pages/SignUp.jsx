@@ -8,6 +8,7 @@ import TitleInput from "../components/Inputs/TitleInput";
 import peopleImage from '../images/people.png'
 import crossedEyeImage from '../images/crossedEye.png'
 import state from "../states/state";
+import PostService from "../API/PostServise";
 
 const SignIn = () => {
     const router = useNavigate()
@@ -15,16 +16,22 @@ const SignIn = () => {
 
     // возможность скрыть пароль и открыть
     const [passwordHide,setPasswordHide] = useState(true)
+    const [registration,setRegistration] = useState()
 
     const [info,setInfo] = useState({
-        fullName: '',
+        login: '',
         company: '',
-        position: '',
-        number: '',
+        job: '',
+        phone: '',
         email: '',
         password: '',
     })
 
+    async function register(){
+        const Registration = await PostService.postRegistrationForm(info)
+        await setRegistration(Registration)
+        return Registration
+    }
 
     return (
         // <button onClick={() => router(`/section`)} >buttonbuttonbutton</button>
@@ -41,9 +48,9 @@ const SignIn = () => {
                             text={'ФИО'}
                             type={"text"}
                             required={true}
-                            value={info.fullName}
+                            value={info.login}
                             changeValue={(e) => {
-                                setInfo({...info,fullName: e })
+                                setInfo({...info,login: e })
                             }}
                         />
                         <TitleInput
@@ -59,9 +66,9 @@ const SignIn = () => {
                         <TitleInput
                             text={'должость'}
                             type={"text"}
-                            value={info.position}
+                            value={info.job}
                             changeValue={(e) => {
-                                setInfo({...info,position: e })
+                                setInfo({...info,job: e })
                             }}
                         />
                         <TitleInput
@@ -69,9 +76,9 @@ const SignIn = () => {
                             type={"tel"}
                             required={true}
                             start={'+7'}
-                            value={info.number}
+                            value={info.phone}
                             changeValue={(e) => {
-                                setInfo({...info,number: e })
+                                setInfo({...info,phone: e })
                             }}
                         />
                         <TitleInput
@@ -98,7 +105,7 @@ const SignIn = () => {
 
                     <LightBlueButton
                         text={'Зарегистрироваться'}
-                        click={() => console.log(info)}
+                        click={() => router('/signin/citizen')}
                     />
 
                     <p className={styles.index__grayText}>У вас уже есть аккаунт?</p>

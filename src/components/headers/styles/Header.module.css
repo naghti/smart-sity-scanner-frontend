@@ -28,3 +28,8 @@
     color: #FFFFFF;
 }
 
+@media (max-width: 576px) {
+    .header__titleBox {
+        display: none;
+    }
+}

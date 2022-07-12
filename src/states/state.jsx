@@ -28,6 +28,7 @@ import libraryPhoto from '../images/library.png'
 import entertainmentPhoto from '../images/entertainment.png'
 import digitalTransformationPhoto from '../images/digitalTransformation.png'
 import calculatorButtonsInfo from "./calculatorButtonsInfo";
+import smartCityScannerAdministrationButtonsInfo from "./SmartCityScannerAdministrationButtonsInfo";
 
 class State {
     constructor() {
@@ -264,6 +265,40 @@ class State {
             photo: youthPolicyPhoto
         },
     ]
+
+    changePageUp(pages,page){
+        if (pages == 'administration'){
+            let pageList = []
+            for (let key in smartCityScannerAdministrationButtonsInfo.info) {
+                pageList.push(key)
+            }
+
+            let result =''
+            pageList.map((item,index) => {
+                if (item == page) {
+                    result = pageList[--index]
+                }
+            })
+            return result
+        }
+    }
+    changePageDown(pages,page){
+        if (pages == 'administration'){
+            let pageList = []
+            for (let key in smartCityScannerAdministrationButtonsInfo.info) {
+                pageList.push(key)
+            }
+
+            let result =''
+            pageList.map((item,index) => {
+                if (item == page) {
+                    result = pageList[++index]
+                }
+            })
+            return result
+        }
+    }
+
 }
 
 export default new State()

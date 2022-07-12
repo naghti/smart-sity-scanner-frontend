@@ -8,3 +8,10 @@
     "CalculatorSelectionsCitizen5 CalculatorSelectionsCitizen6 CalculatorSelectionsCitizen7 CalculatorSelectionsCitizen7 CalculatorSelectionsCitizen3 CalculatorSelectionsCitizen8"
     "CalculatorSelectionsCitizen9 CalculatorSelectionsCitizen10 CalculatorSelectionsCitizen10 CalculatorSelectionsCitizen11 CalculatorSelectionsCitizen12 CalculatorSelectionsCitizen12";
 }
+
+@media (max-width: 576px) {
+    .smartCityScannerCitizen__selection {
+        display: flex;
+        flex-direction: column;
+    }
+}

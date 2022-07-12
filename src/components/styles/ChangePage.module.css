@@ -1,0 +1,30 @@
+.changePage{
+    display: flex;
+    align-items: center;
+}
+.changePage__icon{
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 20px;
+    background: #436AEB;
+    border-radius: 50%;
+}
+.changePage__title{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    align-items: flex-end;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+@media (max-width: 576px) {
+    .changePage__titleBox{
+        display: none;
+    }
+}

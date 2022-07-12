@@ -11,6 +11,7 @@ import CalculatorPage from "./pages/CalculatorPage";
 import UnknowPage from "./pages/UnknowPage";
 import ScannerPage from "./pages/ScannerPage";
 import SmartCityScannerCitizen from "./pages/SmartCityScannerCitizen";
+import MailConfirmation from "./pages/MailConfirmation";
 function App() {
   return (
     <div className="App">
@@ -19,6 +20,7 @@ function App() {
           <Route path='/' element={<SelectRole/>} />
           <Route path='/signin/:role' element={<SignIn/>}/>
           <Route path='/signup' element={<SignUp/>}/>
+          <Route path='/mailconfirmation' element={<MailConfirmation/>}/>
           <Route path='/control' element={<SelectControl/>}/>
           <Route path='/calculator' element={<Calculator/>}/>
           <Route path='/calculator/:page' element={<CalculatorPage/>}/>

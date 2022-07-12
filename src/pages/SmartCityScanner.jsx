@@ -48,7 +48,7 @@ const SmartCityScanner = () => {
                                    }}
                                    onMouseEnter={() => setActive(selection.name)}
                                    onMouseLeave={() => setActive(false)}
-                                   onClick={() => router(`/scanner/administration/${selection.name}`)}
+                                   // onClick={() => router(`/scanner/administration/${selection.name}`)}
                                >
                                    <div
                                        className={styles.smartCityScanner__selectShadow}
@@ -82,7 +82,7 @@ const SmartCityScanner = () => {
                                 }}
                                 onMouseEnter={() => setActive(selection.name)}
                                 onMouseLeave={() => setActive(false)}
-                                onClick={() => router(`/scanner/administration/${selection.name}`)}
+                                // onClick={() => router(`/scanner/administration/${selection.name}`)}
                             >
                                 <div
                                     className={styles.smartCityScanner__selectShadow}
@@ -114,7 +114,7 @@ const SmartCityScanner = () => {
                                 }}
                                 onMouseEnter={() => setActive(selection.name)}
                                 onMouseLeave={() => setActive(false)}
-                                onClick={() => router(`/scanner/administration/${selection.name}`)}
+                                // onClick={() => router(`/scanner/administration/${selection.name}`)}
                             >
                                 <div
                                     className={styles.smartCityScanner__selectShadow}

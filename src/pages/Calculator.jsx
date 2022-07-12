@@ -46,7 +46,7 @@ const Calculator = () => {
                                             url(${selection.photo})
                                     `}}
                                 onClick={() => {
-                                    router(`${selection.name}`)
+                                    // router(`${selection.name}`)
                                 }}
                             >
                                 <p

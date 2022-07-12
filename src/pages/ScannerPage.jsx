@@ -12,6 +12,7 @@ import UnknowPage from "./UnknowPage";
 import state from "../states/state";
 import SmartCityScannerAdministrationButtonsInfo from "../states/SmartCityScannerAdministrationButtonsInfo";
 import SmartCityScannerCitizenButtonsInfo from "../states/SmartCityScannerCitizenButtonsInfo";
+import ChangePage from "../components/ChangePage";
 
 const ScannerPage = () => {
 
@@ -95,6 +96,20 @@ const ScannerPage = () => {
 
             </div>
             <div>
+                <div style={{width:1400,maxWidth:'100vw',margin:'0 auto',display:'flex',justifyContent:'space-between'}}>
+                    <ChangePage
+                        title={'Перейти к предыдущей странице'}
+                        deg={'0'}
+                        click={() => router(`/scanner/administration/${state.changePageUp('administration',activePage.title)}`)}
+                    />
+
+                    <ChangePage
+                        title={'Перейти к следующей странице'}
+                        style={{flexDirection: 'row-reverse'}}
+                        deg={'180'}
+                        click={() => router(`/scanner/administration/${state.changePageDown('administration',activePage.title)}`)}
+                    />
+                </div>
                 <Footer/>
             </div>
         </div>
