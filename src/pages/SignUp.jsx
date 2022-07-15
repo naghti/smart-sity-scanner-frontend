@@ -20,8 +20,7 @@ const SignIn = () => {
 
     const [info,setInfo] = useState({
         login: '',
-        company: '',
-        job: '',
+        city: '',
         phone: '',
         email: '',
         password: '',
@@ -30,7 +29,13 @@ const SignIn = () => {
     async function register(){
         const Registration = await PostService.postRegistrationForm(info)
         await setRegistration(Registration)
-        return Registration
+            console.log(Registration)
+
+        if (Registration?.error == undefined) {
+            state.token = Registration.token
+            router('/mailconfirmation')
+        }
+        else alert(Registration.error)
     }
 
     return (
@@ -54,23 +59,15 @@ const SignIn = () => {
                             }}
                         />
                         <TitleInput
-                            text={'компания'}
-                            placeholder={'Введите компанию'}
+                            text={'город'}
                             type={"text"}
                             required={true}
-                            value={info.company}
+                            value={info.city}
                             changeValue={(e) => {
-                                setInfo({...info,company: e })
+                                setInfo({...info,city: e })
                             }}
                         />
-                        <TitleInput
-                            text={'должость'}
-                            type={"text"}
-                            value={info.job}
-                            changeValue={(e) => {
-                                setInfo({...info,job: e })
-                            }}
-                        />
+
                         <TitleInput
                             text={'телефон'}
                             type={"tel"}
@@ -105,7 +102,7 @@ const SignIn = () => {
 
                     <LightBlueButton
                         text={'Зарегистрироваться'}
-                        click={() => router('/signin/citizen')}
+                        click={() => register()}
                     />
 
                     <p className={styles.index__grayText}>У вас уже есть аккаунт?</p>

@@ -27,9 +27,34 @@
     line-height: 19px;
     color: #FFFFFF;
 }
-
+.header__title_active{
+    background: white;
+    border-radius: 127px;
+    padding: 6px 13px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: #000000;
+}
+.header__iconBox{
+    display: none;
+    height: 100%;
+    align-items: center;
+    padding: 0 20px;
+}
+.header__icon{
+    width: 55px;
+}
 @media (max-width: 576px) {
     .header__titleBox {
         display: none;
+    }
+    .header__iconBox{
+        display: flex;
+    }
+    .header{
+        justify-content: space-between;
     }
 }

@@ -1,0 +1,30 @@
+.smartCityScannerBusiness__selectionUrbanEconomy {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px 10px;
+    grid-template-areas:
+    "businessUrbanEconomy1 businessUrbanEconomy2 businessUrbanEconomy3 businessUrbanEconomy3 businessUrbanEconomy4"
+    "businessUrbanEconomy5 businessUrbanEconomy6 businessUrbanEconomy6 businessUrbanEconomy7 businessUrbanEconomy7";
+}
+.smartCityScannerBusiness__selectionSocialSphere {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 10px 10px;
+    grid-template-areas:
+    "businessSocialSphere1 businessSocialSphere2 businessSocialSphere2 businessSocialSphere3 businessSocialSphere3"
+    "businessSocialSphere4 businessSocialSphere4 businessSocialSphere5 businessSocialSphere5 businessSocialSphere6"
+    "businessSocialSphere7 businessSocialSphere8 businessSocialSphere8 businessSocialSphere9 businessSocialSphere9";
+}
+
+@media (max-width: 576px) {
+    .smartCityScannerBusiness__selectionUrbanEconomy {
+        display: flex;
+        flex-direction: column;
+    }
+    .smartCityScannerBusiness__selectionSocialSphere {
+        display: flex;
+        flex-direction: column;
+    }
+}

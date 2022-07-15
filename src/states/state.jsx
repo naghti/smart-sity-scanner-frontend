@@ -266,38 +266,122 @@ class State {
         },
     ]
 
-    changePageUp(pages,page){
-        if (pages == 'administration'){
-            let pageList = []
-            for (let key in smartCityScannerAdministrationButtonsInfo.info) {
-                pageList.push(key)
-            }
-
-            let result =''
-            pageList.map((item,index) => {
-                if (item == page) {
-                    result = pageList[--index]
-                }
-            })
-            return result
-        }
+    CalculatorSelectionsBusiness = {
+        urbanEconomy:[
+            {
+                name: 'Безопасность',
+                photo: safetyPhoto
+            },
+            {
+                name: 'ЖКХ',
+                photo: hcsPhoto
+            },
+            {
+                name: 'Капитальный ремонт',
+                photo: repairPhoto
+            },
+            {
+                name: 'Недвижимость',
+                photo: RealEstatePhoto
+            },
+            {
+                name: 'Экология',
+                photo: ecologyPhoto
+            },
+            {
+                name: 'Транспорт',
+                photo: transportPhoto,
+            },
+            {
+                name: "Цифровая трансформация",
+                photo: digitalTransformationPhoto
+            },
+        ],
+        socialSphere:[
+            {
+                name: "Архивы",
+                photo: archivesPhoto
+            },
+            {
+                name: 'Здравоохранение',
+                photo: healthcarePhoto
+            },
+            {
+                name: 'Цифровая трансформация',
+                photo: digitalTransformationPhoto
+            },
+            {
+                name: 'Образование',
+                photo: educationPhoto
+            },
+            {
+                name: 'Обратная связь с гражданами',
+                photo: feedbackPhoto
+            },
+            {
+                name: 'Соцзащита',
+                photo: SocialSpherePhoto
+            },
+            {
+                name: 'Инновации',
+                photo: feedbackPhoto
+            },
+            {
+                name: 'Промышленность',
+                photo: SocialSpherePhoto
+            },
+            {
+                name: 'Строительство',
+                photo: ConstructionPhoto
+            },
+        ]
     }
-    changePageDown(pages,page){
-        if (pages == 'administration'){
-            let pageList = []
-            for (let key in smartCityScannerAdministrationButtonsInfo.info) {
-                pageList.push(key)
-            }
 
-            let result =''
-            pageList.map((item,index) => {
-                if (item == page) {
+    token = ""
+    email = 0
+
+    changePageUp(pages,page){
+        let pageList = []
+        for (let key in pages) {
+            pageList.push(key)
+        }
+        let result =''
+        pageList.map((item,index) => {
+            if (item == page) {
+                if (--index <= -1){
+                    alert(1)
+
+                    result = pageList[ pageList.length - 1 ]
+                }else{
+                    alert(--index)
+
                     result = pageList[++index]
                 }
-            })
-            return result
-        }
+            }
+        })
+        return result
     }
+    changePageDown(pages,page){
+        let pageList = []
+        for (let key in pages) {
+            pageList.push(key)
+        }
+
+        let result =''
+        pageList.map((item,index) => {
+            if (item == page) {
+                if (++index >= pageList.length){
+                    alert(1)
+                    result = pageList[0]
+                }else{
+                    alert(--index)
+                    result = pageList[++index]
+                }
+            }
+        })
+        return result
+    }
+    mobileMenu = false
 
 }
 

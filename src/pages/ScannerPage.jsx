@@ -13,6 +13,7 @@ import state from "../states/state";
 import SmartCityScannerAdministrationButtonsInfo from "../states/SmartCityScannerAdministrationButtonsInfo";
 import SmartCityScannerCitizenButtonsInfo from "../states/SmartCityScannerCitizenButtonsInfo";
 import ChangePage from "../components/ChangePage";
+import SmartCityScannerBusinessButtonsInfo from "../states/SmartCityScannerBusinessButtonsInfo";
 
 const ScannerPage = () => {
 
@@ -25,12 +26,19 @@ const ScannerPage = () => {
         :
             'Выберите 3 системы*, которые вы хотели бы увидеть в вашем городе.'
 
-    const pages = params.role == 'administration'
-        ?
-            SmartCityScannerAdministrationButtonsInfo.info
-        :
-            SmartCityScannerCitizenButtonsInfo.info
+    window.scrollTo(0, 0);
 
+    let pages;
+    if(params.role == 'administration'){
+        pages = SmartCityScannerAdministrationButtonsInfo.info
+    }else if (params.role == 'business') {
+        pages = SmartCityScannerBusinessButtonsInfo.info
+    }else if (params.role == 'citizen') {
+        pages = SmartCityScannerCitizenButtonsInfo.info
+    } else {
+        alert('error')
+    }
+    console.log(pages)
     const activePage = pages[params.page]
 
     // проверка валидности страницы из url
@@ -57,9 +65,9 @@ const ScannerPage = () => {
                         </h4>
                         <div className={CalculatorPageStyles.calculatorPage__inputsBox}>
                             {
-                                activePage.inputs.map(item => (
+                                activePage.inputs.map((item,index) => (
                                     <>
-                                        <div className={CalculatorPageStyles.calculatorPage__inputBox} >
+                                        <div className={CalculatorPageStyles.calculatorPage__inputBox}  key={Date.now()}>
                                             <div style={{display: 'flex', margin: '10px 0',alignItems:'center'}}>
                                                 <input
                                                     type="checkbox"
@@ -84,12 +92,12 @@ const ScannerPage = () => {
                     </div>
                 </div>
                 <div className={CalculatorPageStyles.calculatorPage__buttons}>
-                    <WhiteButton2
+                    <BlueButton
                         text={'Сохранить'}
                         className={CalculatorPageStyles.calculatorPage__button}
                     />
-                    <BlueButton
-                        text={'Сохранить и отправить'}
+                    <WhiteButton2
+                        text={'Скачать PDF'}
                         className={CalculatorPageStyles.calculatorPage__button}
                     />
                 </div>
@@ -100,14 +108,14 @@ const ScannerPage = () => {
                     <ChangePage
                         title={'Перейти к предыдущей странице'}
                         deg={'0'}
-                        click={() => router(`/scanner/administration/${state.changePageUp('administration',activePage.title)}`)}
+                        click={() => router(`/scanner/${params.role}/${state.changePageUp(pages,activePage.title)}`)}
                     />
 
                     <ChangePage
                         title={'Перейти к следующей странице'}
                         style={{flexDirection: 'row-reverse'}}
                         deg={'180'}
-                        click={() => router(`/scanner/administration/${state.changePageDown('administration',activePage.title)}`)}
+                        click={() => router(`/scanner/${params.role}/${state.changePageDown(pages,activePage.title)}`)}
                     />
                 </div>
                 <Footer/>

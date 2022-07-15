@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Header from "../components/headers/Header";
 import HeaderTitle from "../components/headers/HeaderTitle";
 import backgroundImage from '../images/background.png'
@@ -8,11 +8,13 @@ import AccountStatus from "../components/boxs/AccountStatus";
 import state from '../states/state'
 import Footer from "../components/footers/Footer";
 import {useNavigate} from "react-router-dom";
+import PostService from "../API/PostServise";
 
 const Calculator = () => {
 
     const router = useNavigate()
 
+    useEffect(() => {PostService.postAuthorization()},[])
 
     return (
         <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '100vh'}}>
@@ -46,7 +48,7 @@ const Calculator = () => {
                                             url(${selection.photo})
                                     `}}
                                 onClick={() => {
-                                    // router(`${selection.name}`)
+                                    router(`${selection.name}`)
                                 }}
                             >
                                 <p

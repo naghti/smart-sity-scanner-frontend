@@ -5,31 +5,25 @@ import MailConfirmationStyles from "./styles/MailConfirmation.module.css"
 import townImage from "../images/town.png"
 import LightBlueButton from "../components/buttons/LightBlueButton";
 import TitleInput from "../components/Inputs/TitleInput";
+import PostService from "../API/PostServise";
+import state from "../states/state";
 
 
 const MailConfirmation = () => {
     const router = useNavigate()
     const params = useParams()
 
-    // возможность скрыть пароль и открыть
-    const [passwordHide,setPasswordHide] = useState(true)
+    const [code,setCode] = useState("")
 
-    // проверка валидности роли в url
-    // if(
-    //     !state.roles
-    //         .filter((e) => e == params.role)
-    //         .length
-    // ){
-    //     return <UnknowPage/>
-    // }
+    async function mailConfirmation(){
+        const MailConfirmation = await PostService.postMailConfirmation(state.token,code)
 
-    function login() {
-        if (params.role == "administration") {
+        if (MailConfirmation?.error == undefined) {
+            state.email = 1
             router('/control')
         }
-        if (params.role == "citizen") {
-            router('/scanner/citizen')
-        }
+        else alert(MailConfirmation.error)
+        console.log(MailConfirmation)
     }
 
     return (
@@ -46,16 +40,20 @@ const MailConfirmation = () => {
                         <TitleInput
                             text={'код'}
                             type={"text"}
+                            value={code}
+                            changeValue={(e) => {
+                                setCode(e)
+                            }}
                         />
-                            <p className={MailConfirmationStyles.p}>
-                                Введите код который был отправлен на вашу почту
-                            </p>
                     </div>
 
                     <LightBlueButton
                         text={'Подтвердить email'}
-                        click={() => login()}
+                        click={() => mailConfirmation()}
                     />
+                    <p className={MailConfirmationStyles.p}>
+                        Введите код который был отправлен на вашу почту
+                    </p>
 
                 </div>
 

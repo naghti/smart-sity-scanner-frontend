@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './styles/TitleUnderline.module.css'
 
-const TitleUnderline = ({name,color}) => {
+const TitleUnderline = ({name,color,...props}) => {
     return (
-        <div className={styles.titleUnderline}>
+        <div className={styles.titleUnderline} {...props}>
             <h3
                 className={styles.titleUnderline__title}
             >

@@ -9,10 +9,16 @@ import peopleImage from '../images/people.png'
 import crossedEyeImage from '../images/crossedEye.png'
 import state from "../states/state";
 import UnknowPage from "./UnknowPage";
+import PostService from "../API/PostServise";
 
 const SignIn = () => {
     const router = useNavigate()
     const params = useParams()
+
+    const [info,setInfo] = useState({
+        login: '',
+        password: '',
+    })
 
     // возможность скрыть пароль и открыть
     const [passwordHide,setPasswordHide] = useState(true)
@@ -27,12 +33,8 @@ const SignIn = () => {
     }
 
     function login() {
-        if (params.role == "administration") {
-            router('/control')
-        }
-        if (params.role == "citizen") {
-            router('/scanner/citizen')
-        }
+        PostService.postAuthorization(info)
+        router('/scanner/citizen')
     }
 
     return (
@@ -48,6 +50,10 @@ const SignIn = () => {
                     <div style={{width:300,margin:'40px 0 10px'}}>
                         <TitleInput
                             text={'логин'}
+                            value={info.login}
+                            changeValue={(e) => {
+                                setInfo({...info,login: e })
+                            }}
                             image={peopleImage}
                             type={"text"}
                         />
@@ -56,6 +62,10 @@ const SignIn = () => {
                             image={crossedEyeImage}
                             type={ passwordHide ? "password" : "text"}
                             onClick={() => setPasswordHide(!passwordHide)}
+                            value={info.password}
+                            changeValue={(e) => {
+                                setInfo({...info,password: e })
+                            }}
                         />
                     </div>
 

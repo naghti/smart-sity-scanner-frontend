@@ -5,7 +5,7 @@ import {useNavigate} from "react-router-dom";
 import burgerMenuImage from '../../images/burgerMenu.png'
 import state from "../../states/state";
 
-const Header = () => {
+const HeaderAbout = () => {
 
     const router = useNavigate()
 
@@ -13,16 +13,14 @@ const Header = () => {
         state.mobileMenu = true
     }
     return (
-        <div className={styles.header}>
+        <div className={styles.header} style={{justifyContent:'space-between'}}>
             <div className={styles.header__logo}>
                 <img src={logoImage} alt="logo"/>
             </div>
             <div className={styles.header__titleBox}>
-                <p className={styles.header__title}>Результаты</p>
-                <p
-                    className={styles.header__title}
-                    onClick={() => router(`/control`)}
-                >Перейти в другой раздел</p>
+                <p className={styles.header__title_active}>О Сканере Умного Города</p>
+                <p className={styles.header__title}>Обратная связь</p>
+                <p className={styles.header__title}>Войти</p>
             </div>
             <div className={styles.header__iconBox}>
                 <img
@@ -36,4 +34,4 @@ const Header = () => {
     );
 };
 
-export default Header;
+export default HeaderAbout;

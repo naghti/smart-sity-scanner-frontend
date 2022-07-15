@@ -12,12 +12,35 @@ import UnknowPage from "./pages/UnknowPage";
 import ScannerPage from "./pages/ScannerPage";
 import SmartCityScannerCitizen from "./pages/SmartCityScannerCitizen";
 import MailConfirmation from "./pages/MailConfirmation";
-function App() {
+import {CSSTransition, TransitionGroup} from "react-transition-group";
+import state from "./states/state";
+import MobileMenu from "./components/MobileMenu";
+import {observable} from "mobx";
+import {observer} from "mobx-react-lite";
+import P from "./pages/P";
+import SmartCityScannerBusiness from "./pages/SmartCityScannerBusiness";
+import About from "./pages/About";
+import Feedback from "./pages/Feedback";
+let App = observer(() => {
   return (
     <div className="App">
+      <TransitionGroup>
+        {
+          state.mobileMenu &&
+              <CSSTransition
+                  key={1}
+                  timeout={200}
+                  classNames="item"
+              >
+                <MobileMenu/>
+              </CSSTransition>
+        }
+      </TransitionGroup>
       <Router>
         <Routes>
           <Route path='/' element={<SelectRole/>} />
+          <Route path='/about' element={<About/>} />
+          <Route path='/feedback' element={<Feedback/>} />
           <Route path='/signin/:role' element={<SignIn/>}/>
           <Route path='/signup' element={<SignUp/>}/>
           <Route path='/mailconfirmation' element={<MailConfirmation/>}/>
@@ -25,7 +48,9 @@ function App() {
           <Route path='/calculator' element={<Calculator/>}/>
           <Route path='/calculator/:page' element={<CalculatorPage/>}/>
           <Route path='/scanner' element={<SmartCityScanner/>}/>
+          <Route path='/p' element={<P/>}/>
           <Route path='/scanner/citizen' exact element={<SmartCityScannerCitizen/>}/>
+          <Route path='/scanner/business' exact element={<SmartCityScannerBusiness/>}/>
           <Route path='/scanner/:role/:page' exact element={<ScannerPage/>}/>
           <Route path='/scanner/:page' exact element={<ScannerPage/>}/>
 
@@ -34,6 +59,6 @@ function App() {
       </Router>
     </div>
   );
-}
+})
 
 export default App;

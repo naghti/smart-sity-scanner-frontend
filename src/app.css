@@ -4,37 +4,18 @@
     box-sizing: border-box;
 }
 
-
 .item-enter {
-    transform: scale(1);
+    opacity: 0;
 }
 .item-enter-active {
-    transform: scale(1.03);
-    background: red;
-    transition: transform 200ms ease-in ;
+    opacity: 1;
+    transition: opacity 500ms ease-in;
 }
 .item-exit {
-    background: red;
-    transition: transform 200ms ease-in ;
-    transform: scale(1.03);
+    opacity: 1;
 
 }
 .item-exit-active {
-    transform: scale(1);
-}
-
-.itemOpacity-enter {
     opacity: 0;
-}
-.itemOpacity-enter-active {
-    opacity: 1;
-    transition: opacity 200ms ease-in ;
-}
-.itemOpacity-exit {
-    opacity: 1;
-    transition: opacity 200ms ease-in ;
-
-}
-.itemOpacity-exit-active {
-    opacity: 0;
+    transition: opacity 500ms ease-in;
 }

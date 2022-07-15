@@ -1,13 +1,15 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './styles/CalculatorPage.module.css'
 import Header from "../components/headers/Header";
 import WhiteButton2 from "../components/buttons/WhiteButton2";
 import BlueButton from "../components/buttons/BlueButton";
 import downloadImage from '../images/download.png'
 import Footer from "../components/footers/Footer";
-import {useNavigate, useParams} from "react-router-dom";
+import {useLocation, useNavigate, useParams} from "react-router-dom";
 import CalculatorButtonsInfo from "../states/calculatorButtonsInfo";
 import UnknowPage from "./UnknowPage";
+import ChangePage from "../components/ChangePage";
+import state from "../states/state";
 
 const CalculatorPage = () => {
 
@@ -15,12 +17,15 @@ const CalculatorPage = () => {
     const router = useNavigate()
 
     const page = CalculatorButtonsInfo.info[params.page]
-
     // проверка валидности страницы из url
     if (page == undefined) return <UnknowPage/>
 
+    window.scrollTo(0, 0);
+
+
+
     return (
-        <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '100vh'}}>
+        <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '100vh'}} key={Date.now()}>
             <div>
                 <Header/>
                 <div className={styles.calculatorPage__titleBox} >
@@ -35,7 +40,7 @@ const CalculatorPage = () => {
             <div className={styles.calculatorPage__box} >
                 {
                     page.content.map((item) => (
-                        <div className={styles.calculatorPage__content}>
+                        <div className={styles.calculatorPage__content} key={Date.now()}>
                             <div className={styles.calculatorPage__contentNumber}>
                                 <div className={styles.calculatorPage__NumberBox}>
                                     <h4 className={styles.calculatorPage__number}>{item.number}</h4>
@@ -86,11 +91,25 @@ const CalculatorPage = () => {
 
             </div>
             <div>
-                <div style={{maxWidth:1400,margin:'0 auto',padding:'0 10px'}}>
+                <div style={{width:1400,maxWidth:'100vw',margin:'0 auto',padding:'0 10px'}}>
                     {
                         page.info.length > 0 &&
                             <hr style={{background:'#ADA5A5'}}/>
                     }
+                    <div style={{width:1400,maxWidth:'100vw',margin:'0 auto',display:'flex',justifyContent:'space-between'}}>
+                        <ChangePage
+                            title={'Перейти к предыдущей странице'}
+                            deg={'0'}
+                            click={() => router(`/calculator/${state.changePageUp(CalculatorButtonsInfo.info,page.title)}`)}
+                        />
+
+                        <ChangePage
+                            title={'Перейти к следующей странице'}
+                            style={{flexDirection: 'row-reverse'}}
+                            deg={'180'}
+                            click={() => router(`/calculator/${state.changePageDown(CalculatorButtonsInfo.info,page.title)}`)}
+                        />
+                    </div>
                     {
                         page.info.map(item => (
                             <div className={styles.calculatorPage__info}>

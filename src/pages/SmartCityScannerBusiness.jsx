@@ -11,9 +11,11 @@ import {CSSTransition, TransitionGroup} from "react-transition-group";
 import calculatorStyles from "./styles/Calculator.module.css";
 import scannerStyles from "./styles/SmartCityScanner.module.css";
 import scannerCitizenStyles from "./styles/SmartCityScannerCitizen.module.css";
+import scannerBusinessStyles from "./styles/SmartCityScannerBusiness.module.css";
 import {useNavigate} from "react-router-dom";
+import SmartCityScannerBusinessButtonsInfo from "../states/SmartCityScannerBusinessButtonsInfo";
 
-const SmartCityScannerCitizen = () => {
+const SmartCityScannerBusiness = () => {
 
     let [active,setActive] = useState(false)
     const router = useNavigate()
@@ -30,22 +32,60 @@ const SmartCityScannerCitizen = () => {
                     В данном разделе Вы можете ознакомиться с перечнем умных решений для жителей города и проголосовать за внедрение наиболее востребованных цифровых технологий.
                 </p>
                 <div style={{margin:'20px 0',display:'flex', justifyContent:'flex-end'}}>
-                    <AccountStatus status={'Житель'} />
+                    <AccountStatus status={'Бизнес'} />
                 </div>
 
-                <div className={scannerCitizenStyles.smartCityScannerCitizen__selection}>
+                <TitleUnderline
+                    name={'Городское хозяйство'}
+                    color={'rgba(10, 58, 215, 1)'}
+                />
+                <div className={scannerBusinessStyles.smartCityScannerBusiness__selectionUrbanEconomy}>
                     {
-                        state.CalculatorSelectionsCitizen.map((selection,index) => (
+                        state.CalculatorSelectionsBusiness.urbanEconomy.map((selection,index) => (
                             <div
                                 className={scannerStyles.smartCityScanner__item}
                                 style={{
-                                    gridArea:`CalculatorSelectionsCitizen${++index}`,
+                                    gridArea:`businessUrbanEconomy${++index}`,
                                     background:`
                                         linear-gradient(
                                             180deg,
                                             rgba(67, 106, 235, 0) 0%,
                                             #436AEB 87.81%, #436AEB 100%),
-                                            no-repeat center/103% 103%
+                                            no-repeat center/cover
+                                            url(${selection.photo})
+                                    `}}
+                                onClick={() => {
+                                    router(`${selection.name}`)
+                                }}
+                            >
+                                <p
+                                    className={scannerStyles.smartCityScanner__selectTitle}
+                                >
+                                    {selection.name}
+                                </p>
+                            </div>
+                        ))
+                    }
+                </div>
+
+                <TitleUnderline
+                    name={'Социальная сфера'}
+                    color={'rgb(255, 157, 64)'}
+                    style={{marginTop:60}}
+                />
+                <div className={scannerBusinessStyles.smartCityScannerBusiness__selectionSocialSphere}>
+                    {
+                        state.CalculatorSelectionsBusiness.socialSphere.map((selection,index) => (
+                            <div
+                                className={scannerStyles.smartCityScanner__item}
+                                style={{
+                                    gridArea:`businessSocialSphere${++index}`,
+                                    background:`
+                                            linear-gradient(
+                                            rgba(255, 124, 0, 0) 0%,
+                                            rgb(255, 124, 0) 87.81%,
+                                            rgb(255, 124, 0) 100%),
+                                            no-repeat center/cover
                                             url(${selection.photo})
                                     `}}
                                 onClick={() => {
@@ -67,4 +107,4 @@ const SmartCityScannerCitizen = () => {
     );
 };
 
-export default SmartCityScannerCitizen;
+export default SmartCityScannerBusiness;
