@@ -10,19 +10,31 @@ import CalculatorButtonsInfo from "../states/calculatorButtonsInfo";
 import UnknowPage from "./UnknowPage";
 import ChangePage from "../components/ChangePage";
 import state from "../states/state";
+import PostService from "../API/PostServise";
 
 const CalculatorPage = () => {
 
     const params = useParams()
     const router = useNavigate()
 
+    function funcNull() {
+        alert(1)
+    }
+    function funcSuccess(result) {
+        if (result.email == 0) router('/mailconfirmation')
+        else if(result.permissions != 2){
+            router('/scanner')
+        }
+        else{}
+    }
+    useEffect(() => {
+        PostService.checkStorage(funcNull,funcSuccess)
+    },[])
+    
     const page = CalculatorButtonsInfo.info[params.page]
     // проверка валидности страницы из url
     if (page == undefined) return <UnknowPage/>
-
     window.scrollTo(0, 0);
-
-
 
     return (
         <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '100vh'}} key={Date.now()}>

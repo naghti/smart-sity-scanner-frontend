@@ -21,37 +21,57 @@ import P from "./pages/P";
 import SmartCityScannerBusiness from "./pages/SmartCityScannerBusiness";
 import About from "./pages/About";
 import Feedback from "./pages/Feedback";
+import Loader from "./components/Loader";
 let App = observer(() => {
   return (
     <div className="App">
       <TransitionGroup>
+
         {
           state.mobileMenu &&
-              <CSSTransition
-                  key={1}
-                  timeout={200}
-                  classNames="item"
-              >
-                <MobileMenu/>
-              </CSSTransition>
+            <CSSTransition
+                key={1}
+                timeout={200}
+                classNames="item"
+            >
+              <MobileMenu/>
+            </CSSTransition>
+        }
+
+        {
+          state.loader &&
+            <CSSTransition
+                key={1}
+                timeout={200}
+                classNames="item"
+            >
+              <Loader/>
+            </CSSTransition>
         }
       </TransitionGroup>
       <Router>
         <Routes>
           <Route path='/selectrole' element={<SelectRole/>} />
+
           <Route path='/' element={<About/>} />
+
+          <Route path='/p' element={<P/>} />
+
           <Route path='/feedback' element={<Feedback/>} />
+
           <Route path='/signin' element={<SignIn/>}/>
+
           <Route path='/signup' element={<SignUp/>}/>
+
           <Route path='/mailconfirmation' element={<MailConfirmation/>}/>
+
           <Route path='/control' element={<SelectControl/>}/>
+
           <Route path='/calculator' element={<Calculator/>}/>
           <Route path='/calculator/:page' element={<CalculatorPage/>}/>
+
           <Route path='/scanner' element={<SmartCityScanner/>}/>
-          <Route path='/p' element={<P/>}/>
-          <Route path='/scanner/citizen' exact element={<SmartCityScannerCitizen/>}/>
-          <Route path='/scanner/business' exact element={<SmartCityScannerBusiness/>}/>
-          <Route path='/scanner/:role/:page' exact element={<ScannerPage/>}/>
+
           <Route path='/scanner/:page' exact element={<ScannerPage/>}/>
 
           <Route path='*' exact element={<UnknowPage/>} />

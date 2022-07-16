@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import CalculatorPageStyles from './styles/CalculatorPage.module.css'
 import ScannerPageStyles from './styles/ScannerPage.module.css'
 import Header from "../components/headers/Header";
@@ -14,21 +14,20 @@ import SmartCityScannerAdministrationButtonsInfo from "../states/SmartCityScanne
 import SmartCityScannerCitizenButtonsInfo from "../states/SmartCityScannerCitizenButtonsInfo";
 import ChangePage from "../components/ChangePage";
 import SmartCityScannerBusinessButtonsInfo from "../states/SmartCityScannerBusinessButtonsInfo";
+import ScannerInfo from "../states/scannerInfo";
+import PostService from "../API/PostServise";
 
 const ScannerPage = () => {
 
     const params = useParams()
     const router = useNavigate()
 
-    const title = params.role == 'administration'
-        ?
-            'Выберите внедренные решения'
-        :
-            'Выберите 3 системы*, которые вы хотели бы увидеть в вашем городе.'
+    const [title,setTitle] = useState()
+    const [pages,setPages] = useState()
+    const [activePage,setActivePage] = useState()
 
     window.scrollTo(0, 0);
 
-    let pages;
     if(params.role == 'administration'){
         pages = SmartCityScannerAdministrationButtonsInfo.info
     }else if (params.role == 'business') {
@@ -39,8 +38,39 @@ const ScannerPage = () => {
         alert('error')
     }
     console.log(pages)
-    const activePage = pages[params.page]
 
+
+
+
+    function funcNull() {
+        state.loader = false
+        alert(1)
+    }
+    function funcSuccess(result) {
+        state.loader = false
+        if (result.email == 0) router('/mailconfirmation')
+
+        else if(result.permissions == 0){
+            setTitle('Выберите 3 системы*, которые Вы хотели бы увидеть в вашем городе.')
+            setPages(SmartCityScannerCitizenButtonsInfo.info)
+        }
+        else if(result.permissions == 1){
+            setTitle('Выберите внедренные решения')
+            setPages(SmartCityScannerBusinessButtonsInfo.info)
+        }
+        else if(result.permissions == 2){
+            setTitle('Выберите внедренные решения')
+            setPages(SmartCityScannerAdministrationButtonsInfo.info)
+        }
+        else{
+        }
+    }
+    useEffect(() => {
+        state.loader = true
+        PostService.checkStorage(funcNull,funcSuccess)
+    },[])
+
+    setActivePage(pages[params.page])
     // проверка валидности страницы из url
     if (activePage == undefined) return <UnknowPage/>
 

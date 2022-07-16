@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import Header from "../components/headers/Header";
 import HeaderTitle from "../components/headers/HeaderTitle";
 import backgroundImage from '../images/background.png'
@@ -9,128 +9,111 @@ import Footer from "../components/footers/Footer";
 import TitleUnderline from "../components/TitleUnderline";
 import {CSSTransition, TransitionGroup} from "react-transition-group";
 import {useNavigate} from "react-router-dom";
+import PostService from "../API/PostServise";
+import ScannerInfo from "../states/scannerInfo";
+import Loader from "../components/Loader";
 
 const SmartCityScanner = () => {
 
     let [active,setActive] = useState(false)
+    let [permissions,setPermissions] = useState(0)
+    let [info,setInfo] = useState(ScannerInfo.info.base)
     const router = useNavigate()
+
+
+    function funcNull() {
+        state.loader = false
+        alert(1)
+    }
+
+    function funcSuccess(result) {
+        state.loader = false
+        setPermissions(result.permissions)
+        if (result.email == 0) router('/mailconfirmation')
+        else if(result.permissions == 0){
+            setInfo(ScannerInfo.info.citizen)
+        }
+        else if(result.permissions == 1){
+            setInfo(ScannerInfo.info.business)
+        }
+        else if(result.permissions == 2){
+            setInfo(ScannerInfo.info.admin)
+        }
+        else{
+        }
+    }
+    useEffect(() => {
+        state.loader = true
+        PostService.checkStorage(funcNull,funcSuccess)
+    },[])
 
     return (
         <div>
-            <Header/>
-            <HeaderTitle
-                background={backgroundImage}
-                text={'Области цифровизации'}
-            />
-            <div className={styles.smartCityScanner__box}>
-                <p className={styles.smartCityScanner__title}>
-                    Данный раздел позволяет ознакомиться с существующими цифровыми инструментами в различных областях, а также эффектами их внедрения, провести цифровое сканирование по текущему статусу использования цифровых продуктов, сформировать дорожную карту с рекомендациями по приоритетам прохождения цифровых этапов.
-                </p>
-                <div style={{margin:'20px 0',display:'flex', justifyContent:'flex-end'}}>
-                    <AccountStatus status={'Городская администрация'} />
-                </div>
-
-                <TitleUnderline
-                    name={'Социальная сфера'}
-                    color={'rgba(255, 157, 64, 1)'}
-                />
-
-                    <div className={styles.smartCityScanner__selectionSocialSphere}>
+            {
+                state.loader == false &&
+                <>
+                    <Header permissions={permissions}/>
+                    <HeaderTitle
+                        background={backgroundImage}
+                        text={info.title}
+                    />
+                    <div className={styles.smartCityScanner__box}>
+                        <p className={styles.smartCityScanner__title}>
+                            {info.paragraph}
+                        </p>
+                        <div style={{margin: '20px 0', display: 'flex', justifyContent: 'flex-end'}}>
+                            <AccountStatus status={info.status}/>
+                        </div>
 
                         {
-                            state.scanerSelections.socialSphere.map((selection,index) => (
-                               <div
-                                   className={styles.smartCityScanner__item}
-                                   style={{
-                                       gridArea:`socialSphere${++index}`,
-                                       background:`
-                                           no-repeat center/103% 103% url(${selection.photo})`
-                                   }}
-                                   onMouseEnter={() => setActive(selection.name)}
-                                   onMouseLeave={() => setActive(false)}
-                                   onClick={() => router(`/scanner/administration/${selection.name}`)}
-                               >
-                                   <div
-                                       className={styles.smartCityScanner__selectShadow}
-                                       style={{background:'linear-gradient(180deg, rgba(255, 124, 0, 0) 0%, #FF7C00 87.81%, #FF7C00 100%)'}}
-                                   ></div>
-                                   <p
-                                       className={styles.smartCityScanner__selectTitle}
-                                   >
-                                       {selection.name}
-                                   </p>
-                               </div>
+                            info.box.map(item => (
+                                <div style={{marginTop: 40}}>
+                                    {
+                                        item.title != "" &&
+                                        <TitleUnderline
+                                            name={item.title}
+                                            color={item.color}
+                                        />
+                                    }
+
+                                    <div className={item.style}>
+
+                                        {
+                                            item.items.map((selection, index) => (
+                                                <div
+                                                    className={styles.smartCityScanner__item}
+                                                    style={{
+                                                        gridArea: `${item.gridArea}${++index}`,
+                                                        background: `
+                                                               no-repeat center/cover url(${selection.photo})`
+                                                    }}
+                                                    onMouseEnter={() => setActive(selection.name)}
+                                                    onMouseLeave={() => setActive(false)}
+                                                    onClick={() => router(`/scanner/${selection.name}`)}
+                                                >
+                                                    <div
+                                                        className={styles.smartCityScanner__selectShadow}
+                                                        style={{background: `${item.background}`}}
+                                                    ></div>
+                                                    <p
+                                                        className={styles.smartCityScanner__selectTitle}
+                                                    >
+                                                        {selection.name}
+                                                    </p>
+                                                </div>
+                                            ))
+                                        }
+
+                                    </div>
+                                </div>
                             ))
                         }
 
                     </div>
+                    <Footer/>
+                </>
+            }
 
-                <TitleUnderline
-                    name={'Городское хозяйство'}
-                    color={'rgba(10, 58, 215, 1)'}
-                />
-
-                <div className={styles.smartCityScanner__selectionUrbanEconomy}>
-                    {
-                        state.scanerSelections.urbanEconomy.map((selection,index) => (
-                            <div
-                                className={styles.smartCityScanner__item}
-                                style={{
-                                    gridArea:`urbanEconomy${++index}`,
-                                    background:`
-                                               no-repeat center/103% 103% url(${selection.photo})`
-                                }}
-                                onMouseEnter={() => setActive(selection.name)}
-                                onMouseLeave={() => setActive(false)}
-                                onClick={() => router(`/scanner/administration/${selection.name}`)}
-                            >
-                                <div
-                                    className={styles.smartCityScanner__selectShadow}
-                                    style={{background:'linear-gradient(180deg, rgba(10, 58, 215, 0) 0%, #0A3AD7 87.81%, #0A3AD7 100%)'}}
-                                ></div>
-                                <p
-                                    className={styles.smartCityScanner__selectTitle}
-                                >
-                                    {selection.name}
-                                </p>
-                            </div>
-                        ))
-                    }
-                </div>
-
-                <TitleUnderline
-                    name={'Бизнес'}
-                    color={'rgba(0, 225, 50, 1)'}
-                />
-                <div className={styles.smartCityScanner__selectionBusiness}>
-                    {
-                        state.scanerSelections.business.map((selection,index) => (
-                            <div
-                                className={styles.smartCityScanner__item}
-                                style={{
-                                    gridArea:`business${++index}`,
-                                    background:`
-                                               no-repeat center/103% 103% url(${selection.photo})`
-                                }}
-                                onMouseEnter={() => setActive(selection.name)}
-                                onMouseLeave={() => setActive(false)}
-                                onClick={() => router(`/scanner/administration/${selection.name}`)}
-                            >
-                                <div
-                                    className={styles.smartCityScanner__selectShadow}
-                                    style={{background:'linear-gradient(180deg, rgba(0, 225, 50, 0) 0%, #00E132 87.81%, #00E132 100%)'}}
-                                ></div>
-                                <p
-                                    className={styles.smartCityScanner__selectTitle}
-                                >
-                                    {selection.name}
-                                </p>
-                            </div>
-                        ))
-                    }
-                </div>
-            </div>
-            <Footer/>
         </div>
     );
 };

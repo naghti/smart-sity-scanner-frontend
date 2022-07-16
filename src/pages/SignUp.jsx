@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
 import styles from "./styles/index.module.css"
 import townImage from "../images/town.png"
@@ -32,11 +32,29 @@ const SignIn = () => {
             console.log(Registration)
 
         if (Registration?.error == undefined) {
-            state.token = Registration.token
+            localStorage.setItem('password', info.password);
+            localStorage.setItem('token', Registration.token);
             router('/mailconfirmation')
         }
         else alert(Registration.error)
     }
+
+    function funcNull() {
+        alert(1)
+    }
+    function funcSuccess(result) {
+        if (result.email == 0) router('/mailconfirmation')
+        else if(result.permissions == 2){
+            router('/control')
+        }
+        else{
+            router('/scanner')
+        }
+    }
+    useEffect(() => {
+        PostService.checkStorage(funcNull,funcSuccess)
+    },[])
+
 
     return (
         // <button onClick={() => router(`/section`)} >buttonbuttonbutton</button>

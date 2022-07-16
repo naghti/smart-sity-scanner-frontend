@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
 import styles from "./styles/index.module.css"
 import MailConfirmationStyles from "./styles/MailConfirmation.module.css"
@@ -16,15 +16,31 @@ const MailConfirmation = () => {
     const [code,setCode] = useState("")
 
     async function mailConfirmation(){
-        const MailConfirmation = await PostService.postMailConfirmation(state.token,code)
+        let StorageToken = localStorage.getItem('token');
+        const MailConfirmation = await PostService.postMailConfirmation(StorageToken,code)
 
         if (MailConfirmation?.error == undefined) {
-            state.email = 1
             router('/control')
         }
         else alert(MailConfirmation.error)
         console.log(MailConfirmation)
     }
+
+    function funcNull() {
+        alert(1)
+    }
+    function funcSuccess(result) {
+        if (result.email == 0) router('/mailconfirmation')
+        else if(result.permissions == 2){
+            router('/control')
+        }
+        else{
+            router('/scanner')
+        }
+    }
+    useEffect(() => {
+        PostService.checkStorage(funcNull,funcSuccess)
+    },[])
 
     return (
         // <button onClick={() => router(`/section`)} >buttonbuttonbutton</button>
@@ -52,7 +68,7 @@ const MailConfirmation = () => {
                         click={() => mailConfirmation()}
                     />
                     <p className={MailConfirmationStyles.p}>
-                        Введите код который был отправлен на вашу почту
+                        Введите код, который был отправлен на Вашу почту
                     </p>
 
                 </div>

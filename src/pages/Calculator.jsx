@@ -14,7 +14,20 @@ const Calculator = () => {
 
     const router = useNavigate()
 
-    useEffect(() => {PostService.postAuthorization()},[])
+    function funcNull() {
+        alert(1)
+    }
+    function funcSuccess(result) {
+        if (result.email == 0) router('/mailconfirmation')
+        else if(result.permissions != 2){
+            router('/scanner')
+        }
+        else{}
+    }
+    useEffect(() => {
+        PostService.checkStorage(funcNull,funcSuccess)
+    },[])
+
 
     return (
         <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '100vh'}}>

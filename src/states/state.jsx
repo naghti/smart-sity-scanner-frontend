@@ -382,6 +382,7 @@ class State {
         return result
     }
     mobileMenu = false
+    loader = false
 
 }
 

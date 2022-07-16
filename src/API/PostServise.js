@@ -1,21 +1,9 @@
 import axios from "axios";
 
 export default class PostService {
+
     static async postRegistrationForm(info) {
         try {
-            var requestOptions = {
-                method: 'GET',
-                redirect: 'follow'
-            };
-
-
-            // fetch("https://server.xn-----6kccnbhd7bxaidnbcayje0c.xn--p1ai/register_user.json?login="+ info.login +"&password="+ info.password +"&phone=" + info.phone +"&email=" + info.email+"&city=" + info.city, requestOptions)
-            //     .then(response => response.text())
-            //     .then(result => console.log(result))
-            //     .catch(error => console.log('error', error));
-
-
-            console.log(info)
             const responce = await axios.post(`https://server.xn-----6kccnbhd7bxaidnbcayje0c.xn--p1ai/register_user.json`, new URLSearchParams({
                     login:info.login,
                     city:info.city,
@@ -56,6 +44,20 @@ export default class PostService {
         }catch (e) {
             alert(`error: ${e}`)
             console.error(e)
+        }
+    }
+    static async checkStorage(funcNull,funcSuccess) {
+        let StorageToken = localStorage.getItem('token');
+        let StoragePassword = localStorage.getItem('password');
+
+        if (StorageToken == null) {
+            funcNull()
+        }else{
+            const result = await PostService.postAuthorization({
+                login: StorageToken,
+                password: StoragePassword
+            })
+            funcSuccess(result)
         }
     }
 }

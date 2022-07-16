@@ -1,0 +1,28 @@
+.loader{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 999;
+    background: linear-gradient(45deg, rgb(152, 207, 195),#56b5b8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loader__item1{}
+
+.loader__item2{
+    position: absolute;
+    animation: animation 3s infinite linear
+}
+
+@keyframes animation {
+    from {
+
+        transform: translateY(-117px) rotate(0deg);
+    }
+
+    to {
+        transform: translateY(-117px) rotate(360deg);
+    }
+}

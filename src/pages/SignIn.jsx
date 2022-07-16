@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
 import styles from "./styles/index.module.css"
 import townImage from "../images/town.png"
@@ -23,23 +23,32 @@ const SignIn = () => {
     // возможность скрыть пароль и открыть
     const [passwordHide,setPasswordHide] = useState(true)
 
-    // проверка валидности роли в url
-    if(
-        !state.roles
-        .filter((e) => e == params.role)
-        .length
-    ){
-        return <UnknowPage/>
-    }
-
     async function login() {
+        //--------------------------------------------сделать проверку из куки зареган ли юзер
         const Authorization = await PostService.postAuthorization(info)
 
         if (Authorization?.error == undefined) {
             router('/scanner/citizen')
         }
         else alert(Authorization.error)
+
     }
+
+    function funcNull() {
+        alert(1)
+    }
+    function funcSuccess(result) {
+        if (result.email == 0) router('/mailconfirmation')
+        else if(result.permissions == 2){
+            router('/control')
+        }
+        else{
+            router('/scanner')
+        }
+    }
+    useEffect(() => {
+        PostService.checkStorage(funcNull,funcSuccess)
+    },[])
 
     return (
         // <button onClick={() => router(`/section`)} >buttonbuttonbutton</button>
@@ -77,13 +86,7 @@ const SignIn = () => {
                         text={'Войти'}
                         click={() => login()}
                     />
-                    {
-                        params.role == undefined || params.role == "citizen"
-                            ?
-                                <WhiteButton text={'Войти через Госуслуги'}/>
-                            :
-                                <></>
-                    }
+                    <WhiteButton text={'Войти через Госуслуги'}/>
 
                     <p className={styles.index__grayText}>У вас все еще нет аккаунта?</p>
                     <p
