@@ -10,7 +10,7 @@ import mapImage from '../images/map.png'
 const Feedback = () => {
     return (
         <div className={styles.about}>
-            <HeaderAbout/>
+            <HeaderAbout active={1}/>
             <div className={styles.about__background}>
                 <div className={styles.about__box}>
                     <div className={styles.about__textBox}>
@@ -35,6 +35,8 @@ const Feedback = () => {
                         src={mapImage}
                         alt="фото"
                         className={styles.about__photo}
+                        style={{borderRadius:' 0 0 20px 20px'}}
+
                     />
                 </div>
             </div>

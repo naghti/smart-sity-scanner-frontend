@@ -38,10 +38,10 @@ let App = observer(() => {
       </TransitionGroup>
       <Router>
         <Routes>
-          <Route path='/' element={<SelectRole/>} />
-          <Route path='/about' element={<About/>} />
+          <Route path='/selectrole' element={<SelectRole/>} />
+          <Route path='/' element={<About/>} />
           <Route path='/feedback' element={<Feedback/>} />
-          <Route path='/signin/:role' element={<SignIn/>}/>
+          <Route path='/signin' element={<SignIn/>}/>
           <Route path='/signup' element={<SignUp/>}/>
           <Route path='/mailconfirmation' element={<MailConfirmation/>}/>
           <Route path='/control' element={<SelectControl/>}/>

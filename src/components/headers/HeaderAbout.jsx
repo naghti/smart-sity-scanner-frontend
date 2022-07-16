@@ -5,7 +5,7 @@ import {useNavigate} from "react-router-dom";
 import burgerMenuImage from '../../images/burgerMenu.png'
 import state from "../../states/state";
 
-const HeaderAbout = () => {
+const HeaderAbout = ({active}) => {
 
     const router = useNavigate()
 
@@ -18,9 +18,24 @@ const HeaderAbout = () => {
                 <img src={logoImage} alt="logo"/>
             </div>
             <div className={styles.header__titleBox}>
-                <p className={styles.header__title_active}>О Сканере Умного Города</p>
-                <p className={styles.header__title}>Обратная связь</p>
-                <p className={styles.header__title}>Войти</p>
+                <p
+                    className={ active == 0 ? styles.header__title_active : styles.header__title }
+                    onClick={() => router(`/`)}
+                >
+                    О Сканере Умного Города
+                </p>
+                <p
+                    className={ active == 1 ? styles.header__title_active : styles.header__title }
+                    onClick={() => router(`/feedback`)}
+                >
+                    Обратная связь
+                </p>
+                <p
+                    className={styles.header__title}
+                    onClick={() => router(`/signin`)}
+                >
+                    Войти
+                </p>
             </div>
             <div className={styles.header__iconBox}>
                 <img

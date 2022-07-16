@@ -32,9 +32,13 @@ const SignIn = () => {
         return <UnknowPage/>
     }
 
-    function login() {
-        PostService.postAuthorization(info)
-        router('/scanner/citizen')
+    async function login() {
+        const Authorization = await PostService.postAuthorization(info)
+
+        if (Authorization?.error == undefined) {
+            router('/scanner/citizen')
+        }
+        else alert(Authorization.error)
     }
 
     return (
