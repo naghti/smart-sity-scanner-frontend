@@ -23,23 +23,28 @@ const SignIn = () => {
     // возможность скрыть пароль и открыть
     const [passwordHide,setPasswordHide] = useState(true)
 
+
     async function login() {
-        //--------------------------------------------сделать проверку из куки зареган ли юзер
         const Authorization = await PostService.postAuthorization(info)
 
         if (Authorization?.error == undefined) {
-            router('/scanner/citizen')
+            localStorage.setItem('password', info.password);
+            localStorage.setItem('token', info.login);
+            router('/scanner')
         }
         else alert(Authorization.error)
 
     }
 
     function funcNull() {
-        alert(1)
+        state.loader = false
+
     }
     function funcSuccess(result) {
+        state.loader = false
         if (result.email == 0) router('/mailconfirmation')
         else if(result.permissions == 2){
+            state.permissions = 2
             router('/control')
         }
         else{
@@ -47,6 +52,7 @@ const SignIn = () => {
         }
     }
     useEffect(() => {
+        state.loader = true
         PostService.checkStorage(funcNull,funcSuccess)
     },[])
 
@@ -54,7 +60,12 @@ const SignIn = () => {
         // <button onClick={() => router(`/section`)} >buttonbuttonbutton</button>
         <div className={styles.index}>
             <div className={styles.index__box}>
-                <img src={townImage} alt="town" className={styles.index__image}/>
+                <img
+                    src={townImage}
+                    alt="town"
+                    className={styles.index__image}
+                    onClick={() => router('/')}
+                />
                 <h2 className={styles.index__title}>Сканер Умного Города</h2>
 
                 <div className={styles.index__form}>

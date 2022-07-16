@@ -57,7 +57,13 @@ export default class PostService {
                 login: StorageToken,
                 password: StoragePassword
             })
-            funcSuccess(result)
+            if (result?.error != undefined) {
+                localStorage.removeItem('token')
+                localStorage.removeItem('password')
+                funcNull()
+            }else{
+                funcSuccess(result)
+            }
         }
     }
 }

@@ -14,24 +14,30 @@ const MailConfirmation = () => {
     const params = useParams()
 
     const [code,setCode] = useState("")
+    const [disabled,setDisabled] = useState(false)
 
     async function mailConfirmation(){
+        setDisabled(true)
         let StorageToken = localStorage.getItem('token');
         const MailConfirmation = await PostService.postMailConfirmation(StorageToken,code)
 
         if (MailConfirmation?.error == undefined) {
+            localStorage.removeItem('info');
             router('/control')
         }
         else alert(MailConfirmation.error)
         console.log(MailConfirmation)
+        setDisabled(false)
+
     }
 
     function funcNull() {
-        alert(1)
+        router('/signin')
     }
     function funcSuccess(result) {
         if (result.email == 0) router('/mailconfirmation')
         else if(result.permissions == 2){
+            state.permissions = 2
             router('/control')
         }
         else{
@@ -66,9 +72,17 @@ const MailConfirmation = () => {
                     <LightBlueButton
                         text={'Подтвердить email'}
                         click={() => mailConfirmation()}
+                        disabled={disabled}
                     />
                     <p className={MailConfirmationStyles.p}>
                         Введите код, который был отправлен на Вашу почту
+                    </p>
+                    <p
+                        className={MailConfirmationStyles.p}
+                        style={{color:'rgb(2,174,208)'}}
+                        onClick={() => router('/signup')}
+                    >
+                        назад
                     </p>
 
                 </div>

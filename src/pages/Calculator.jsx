@@ -15,9 +15,11 @@ const Calculator = () => {
     const router = useNavigate()
 
     function funcNull() {
-        alert(1)
+        state.loader = false
+        router('/signin')
     }
     function funcSuccess(result) {
+        state.loader = false
         if (result.email == 0) router('/mailconfirmation')
         else if(result.permissions != 2){
             router('/scanner')
@@ -25,6 +27,7 @@ const Calculator = () => {
         else{}
     }
     useEffect(() => {
+        state.loader = true
         PostService.checkStorage(funcNull,funcSuccess)
     },[])
 
@@ -32,7 +35,7 @@ const Calculator = () => {
     return (
         <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '100vh'}}>
             <div>
-                <Header/>
+                <Header home={'/control'} permissions={2}/>
                 <HeaderTitle
                     background={backgroundImage}
                     text={'Области цифровизации городского хозяйства'}

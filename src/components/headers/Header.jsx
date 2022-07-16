@@ -5,7 +5,7 @@ import {useNavigate} from "react-router-dom";
 import burgerMenuImage from '../../images/burgerMenu.png'
 import state from "../../states/state";
 
-const Header = ({permissions}) => {
+const Header = ({permissions,home}) => {
 
     const router = useNavigate()
 
@@ -16,7 +16,11 @@ const Header = ({permissions}) => {
     return (
         <div className={styles.header}>
             <div className={styles.header__logo}>
-                <img src={logoImage} alt="logo"/>
+                <img
+                    src={logoImage}
+                    alt="logo"
+                    onClick={() => router(`${home}`)}
+                />
             </div>
             {
                 permissions == 2 &&
@@ -28,16 +32,16 @@ const Header = ({permissions}) => {
                             onClick={() => router(`/control`)}
                         >Перейти в другой раздел</p>
                     </div>
-                    <div className={styles.header__iconBox}>
-                        <img
-                            src={burgerMenuImage}
-                            alt="icon"
-                            className={styles.header__icon}
-                            onClick={() => menu()}
-                        />
-                    </div>
                 </>
             }
+            <div className={styles.header__iconBox}>
+                <img
+                    src={burgerMenuImage}
+                    alt="icon"
+                    className={styles.header__icon}
+                    onClick={() => menu()}
+                />
+            </div>
         </div>
     );
 };

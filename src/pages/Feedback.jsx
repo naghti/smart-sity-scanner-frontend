@@ -10,7 +10,7 @@ import mapImage from '../images/map.png'
 const Feedback = () => {
     return (
         <div className={styles.about}>
-            <HeaderAbout active={1}/>
+            <HeaderAbout active={1} home={"/"}/>
             <div className={styles.about__background}>
                 <div className={styles.about__box}>
                     <div className={styles.about__textBox}>

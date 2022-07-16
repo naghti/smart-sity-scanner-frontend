@@ -349,12 +349,11 @@ class State {
         pageList.map((item,index) => {
             if (item == page) {
                 if (--index <= -1){
-                    alert(1)
+                    console.log(1)
 
                     result = pageList[ pageList.length - 1 ]
                 }else{
-                    alert(--index)
-
+                    console.log(--index)
                     result = pageList[++index]
                 }
             }
@@ -371,10 +370,10 @@ class State {
         pageList.map((item,index) => {
             if (item == page) {
                 if (++index >= pageList.length){
-                    alert(1)
+                    console.log(1)
                     result = pageList[0]
                 }else{
-                    alert(--index)
+                    console.log(--index)
                     result = pageList[++index]
                 }
             }
@@ -383,6 +382,9 @@ class State {
     }
     mobileMenu = false
     loader = false
+    startPage = false
+    info = undefined
+    permissions = 0
 
 }
 

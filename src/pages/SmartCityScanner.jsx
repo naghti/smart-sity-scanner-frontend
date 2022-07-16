@@ -13,30 +13,34 @@ import PostService from "../API/PostServise";
 import ScannerInfo from "../states/scannerInfo";
 import Loader from "../components/Loader";
 
-const SmartCityScanner = () => {
+const   SmartCityScanner = () => {
 
     let [active,setActive] = useState(false)
     let [permissions,setPermissions] = useState(0)
     let [info,setInfo] = useState(ScannerInfo.info.base)
+    let [home,setHome] = useState('/')
     const router = useNavigate()
 
 
     function funcNull() {
         state.loader = false
-        alert(1)
+        router('/signin')
     }
-
     function funcSuccess(result) {
         state.loader = false
         setPermissions(result.permissions)
         if (result.email == 0) router('/mailconfirmation')
         else if(result.permissions == 0){
             setInfo(ScannerInfo.info.citizen)
+            setHome('/scanner')
         }
         else if(result.permissions == 1){
+            setHome('/scanner')
             setInfo(ScannerInfo.info.business)
         }
         else if(result.permissions == 2){
+            state.permissions = 2
+            setHome('/control')
             setInfo(ScannerInfo.info.admin)
         }
         else{
@@ -52,7 +56,7 @@ const SmartCityScanner = () => {
             {
                 state.loader == false &&
                 <>
-                    <Header permissions={permissions}/>
+                    <Header permissions={permissions} home={home}/>
                     <HeaderTitle
                         background={backgroundImage}
                         text={info.title}

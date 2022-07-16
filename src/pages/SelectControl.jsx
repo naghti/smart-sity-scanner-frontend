@@ -4,18 +4,34 @@ import styles from "./styles/index.module.css"
 import townImage from "../images/town.png"
 import LightBlueButton from "../components/buttons/LightBlueButton";
 import PostService from "../API/PostServise";
+import state from "../states/state";
+import ScannerInfo from "../states/scannerInfo";
 
 const SelectControl = () => {
     const router = useNavigate()
 
+
     function funcNull() {
-        alert(1)
+        state.loader = false
+        router('/signin')
     }
     function funcSuccess(result) {
-        console.log(result)
-        router('/scanner')
+        state.loader = false
+        if (result.email == 0) router('/mailconfirmation')
+        else if(result.permissions == 0){
+            router('/scanner')
+        }
+        else if(result.permissions == 1){
+            router('/scanner')
+        }
+        else if(result.permissions == 2){
+            state.permissions = 2
+        }
+        else{
+        }
     }
     useEffect(() => {
+        state.loader = true
         PostService.checkStorage(funcNull,funcSuccess)
     },[])
 

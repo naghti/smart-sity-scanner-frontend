@@ -32,6 +32,7 @@
     height: 100%;
 }
 .index__image {
+    cursor: pointer;
     width: 120px;
 
 }

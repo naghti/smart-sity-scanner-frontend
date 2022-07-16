@@ -9,7 +9,7 @@ import HeaderAbout from "../components/headers/HeaderAbout";
 const About = () => {
     return (
         <div className={styles.about}>
-            <HeaderAbout active={0}/>
+            <HeaderAbout active={0} home={"/"}/>
             <div className={styles.about__background}>
                 <div className={styles.about__box}>
                     <div className={styles.about__textBox}>

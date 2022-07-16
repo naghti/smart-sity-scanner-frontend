@@ -160,7 +160,7 @@ class SmartCityScannerBusinessButtonsInfo {
             ]
         },
         "Обратная связь с гражданами":{
-            title: "Обратная связь",
+            title: "Обратная связь с гражданами",
             inputs: [
                 {
                     title: "Проведение опросов и голосований",

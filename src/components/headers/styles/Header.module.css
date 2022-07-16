@@ -26,6 +26,8 @@
     font-size: 19px;
     line-height: 19px;
     color: #FFFFFF;
+    cursor: pointer;
+
 }
 .header__title_active{
     background: white;
@@ -34,9 +36,11 @@
     font-family: 'Inter';
     font-style: normal;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 19px;
     line-height: 19px;
     color: #000000;
+    cursor: pointer;
+
 }
 .header__iconBox{
     display: none;

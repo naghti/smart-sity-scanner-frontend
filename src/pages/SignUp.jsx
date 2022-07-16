@@ -17,6 +17,7 @@ const SignIn = () => {
     // возможность скрыть пароль и открыть
     const [passwordHide,setPasswordHide] = useState(true)
     const [registration,setRegistration] = useState()
+    const [disabled,setDisabled] = useState(false)
 
     const [info,setInfo] = useState({
         login: '',
@@ -25,26 +26,38 @@ const SignIn = () => {
         email: '',
         password: '',
     })
+    let StorageInfo = localStorage.getItem('info');
 
     async function register(){
-        const Registration = await PostService.postRegistrationForm(info)
-        await setRegistration(Registration)
+        setDisabled(true)
+        console.log(1)
+        if (StorageInfo == null) {
+            const Registration = await PostService.postRegistrationForm(info)
+            await setRegistration(Registration)
             console.log(Registration)
 
-        if (Registration?.error == undefined) {
-            localStorage.setItem('password', info.password);
-            localStorage.setItem('token', Registration.token);
+            if (Registration?.error == undefined) {
+                state.info = info
+                localStorage.setItem('password', info.password);
+                localStorage.setItem('token', Registration.token);
+                localStorage.setItem('info', JSON.stringify(info));
+                router('/mailconfirmation')
+            }
+            else alert(Registration.error)
+        }else{
             router('/mailconfirmation')
         }
-        else alert(Registration.error)
+        setDisabled(false)
     }
 
     function funcNull() {
-        alert(1)
     }
     function funcSuccess(result) {
-        if (result.email == 0) router('/mailconfirmation')
+        if (result.email == 0) {
+            if (state.info == undefined) router('/mailconfirmation')
+        }
         else if(result.permissions == 2){
+            state.permissions = 2
             router('/control')
         }
         else{
@@ -52,7 +65,11 @@ const SignIn = () => {
         }
     }
     useEffect(() => {
-        PostService.checkStorage(funcNull,funcSuccess)
+        if (StorageInfo == null){
+            PostService.checkStorage(funcNull, funcSuccess)
+        }else{
+            setInfo(JSON.parse(StorageInfo))
+        }
     },[])
 
 
@@ -60,7 +77,12 @@ const SignIn = () => {
         // <button onClick={() => router(`/section`)} >buttonbuttonbutton</button>
         <div className={styles.index}>
             <div className={styles.index__box} style={{padding:'50px 10px'}}>
-                <img src={townImage} alt="town" className={styles.index__image}/>
+                <img
+                    src={townImage}
+                    alt="town"
+                    className={styles.index__image}
+                    onClick={() => router('/')}
+                />
                 <h2 className={styles.index__title}>Сканер Умного Города</h2>
 
                 <div className={styles.index__form}>
@@ -121,13 +143,14 @@ const SignIn = () => {
                     <LightBlueButton
                         text={'Зарегистрироваться'}
                         click={() => register()}
+                        disabled={disabled}
                     />
 
                     <p className={styles.index__grayText}>У вас уже есть аккаунт?</p>
                     <p
                         className={styles.index__grayText + ' ' + styles.index__darkText}
                         onClick={() => {
-                            router('/')
+                            router('/signin')
                         }}
                     >Войти</p>
                 </div>

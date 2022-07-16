@@ -25,26 +25,14 @@ const ScannerPage = () => {
     const [title,setTitle] = useState()
     const [pages,setPages] = useState()
     const [activePage,setActivePage] = useState()
+    let [home,setHome] = useState('/')
 
     window.scrollTo(0, 0);
-
-    if(params.role == 'administration'){
-        pages = SmartCityScannerAdministrationButtonsInfo.info
-    }else if (params.role == 'business') {
-        pages = SmartCityScannerBusinessButtonsInfo.info
-    }else if (params.role == 'citizen') {
-        pages = SmartCityScannerCitizenButtonsInfo.info
-    } else {
-        alert('error')
-    }
-    console.log(pages)
-
-
 
 
     function funcNull() {
         state.loader = false
-        alert(1)
+        router('/signin')
     }
     function funcSuccess(result) {
         state.loader = false
@@ -53,14 +41,21 @@ const ScannerPage = () => {
         else if(result.permissions == 0){
             setTitle('Выберите 3 системы*, которые Вы хотели бы увидеть в вашем городе.')
             setPages(SmartCityScannerCitizenButtonsInfo.info)
+            setActivePage(SmartCityScannerCitizenButtonsInfo.info[params.page])
+            setHome('/scanner')
         }
         else if(result.permissions == 1){
             setTitle('Выберите внедренные решения')
             setPages(SmartCityScannerBusinessButtonsInfo.info)
+            setActivePage(SmartCityScannerBusinessButtonsInfo.info[params.page])
+            setHome('/scanner')
         }
         else if(result.permissions == 2){
+            state.permissions = 2
             setTitle('Выберите внедренные решения')
             setPages(SmartCityScannerAdministrationButtonsInfo.info)
+            setActivePage(SmartCityScannerAdministrationButtonsInfo.info[params.page])
+            setHome('/control')
         }
         else{
         }
@@ -68,88 +63,94 @@ const ScannerPage = () => {
     useEffect(() => {
         state.loader = true
         PostService.checkStorage(funcNull,funcSuccess)
-    },[])
+    },[params.page])
 
-    setActivePage(pages[params.page])
     // проверка валидности страницы из url
-    if (activePage == undefined) return <UnknowPage/>
+    // if (activePage == undefined) return <UnknowPage/>
 
     return (
         <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '100vh'}}>
-            <div>
-                <Header/>
-                <div className={CalculatorPageStyles.calculatorPage__titleBox} >
-                    <h3
-                        className={CalculatorPageStyles.calculatorPage__title}
-                    >
-                        {activePage.title}
-                    </h3>
-                </div>
-            </div>
-
-            <div className={CalculatorPageStyles.calculatorPage__box} >
-                <div className={CalculatorPageStyles.calculatorPage__content}>
-                    <div className={CalculatorPageStyles.calculatorPage__contentInfo}>
-                        <h4 className={CalculatorPageStyles.calculatorPage__contentTitle}>
-                            {title}
-                        </h4>
-                        <div className={CalculatorPageStyles.calculatorPage__inputsBox}>
-                            {
-                                activePage.inputs.map((item,index) => (
-                                    <>
-                                        <div className={CalculatorPageStyles.calculatorPage__inputBox}  key={Date.now()}>
-                                            <div style={{display: 'flex', margin: '10px 0',alignItems:'center'}}>
-                                                <input
-                                                    type="checkbox"
-                                                    placeholder={'Введите количество '}
-                                                    className={ScannerPageStyles.scannerPage__checkbox}
-                                                />
-                                                <div>
-                                                    <h4 className={ScannerPageStyles.scannerPage__checkboxTitle}>
-                                                        {item.title}
-                                                    </h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p className={CalculatorPageStyles.calculatorPage__inputTitle}>
-                                            {item.info}
-                                        </p>
-                                    </>
-                                ))
-                            }
+            {
+                activePage !== undefined ?
+                    <>
+                        <div>
+                            <Header home={home}/>
+                            <div className={CalculatorPageStyles.calculatorPage__titleBox} >
+                                <h3
+                                    className={CalculatorPageStyles.calculatorPage__title}
+                                >
+                                    {activePage.title}
+                                </h3>
+                            </div>
                         </div>
 
-                    </div>
-                </div>
-                <div className={CalculatorPageStyles.calculatorPage__buttons}>
-                    <BlueButton
-                        text={'Сохранить'}
-                        className={CalculatorPageStyles.calculatorPage__button}
-                    />
-                    <WhiteButton2
-                        text={'Скачать PDF'}
-                        className={CalculatorPageStyles.calculatorPage__button}
-                    />
-                </div>
+                        <div className={CalculatorPageStyles.calculatorPage__box} >
+                            <div className={CalculatorPageStyles.calculatorPage__content}>
+                                <div className={CalculatorPageStyles.calculatorPage__contentInfo}>
+                                    <h4 className={CalculatorPageStyles.calculatorPage__contentTitle}>
+                                        {title}
+                                    </h4>
+                                    <div className={CalculatorPageStyles.calculatorPage__inputsBox}>
+                                        {
+                                            activePage.inputs.map((item,index) => (
+                                                <>
+                                                    <div className={CalculatorPageStyles.calculatorPage__inputBox}  key={Date.now()}>
+                                                        <div style={{display: 'flex', margin: '10px 0',alignItems:'center'}}>
+                                                            <input
+                                                                type="checkbox"
+                                                                placeholder={'Введите количество '}
+                                                                className={ScannerPageStyles.scannerPage__checkbox}
+                                                            />
+                                                            <div>
+                                                                <h4 className={ScannerPageStyles.scannerPage__checkboxTitle}>
+                                                                    {item.title}
+                                                                </h4>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <p className={CalculatorPageStyles.calculatorPage__inputTitle}>
+                                                        {item.info}
+                                                    </p>
+                                                </>
+                                            ))
+                                        }
+                                    </div>
 
-            </div>
-            <div>
-                <div style={{width:1400,maxWidth:'100vw',margin:'0 auto',display:'flex',justifyContent:'space-between'}}>
-                    <ChangePage
-                        title={'Перейти к предыдущей странице'}
-                        deg={'0'}
-                        click={() => router(`/scanner/${params.role}/${state.changePageUp(pages,activePage.title)}`)}
-                    />
+                                </div>
+                            </div>
+                            <div className={CalculatorPageStyles.calculatorPage__buttons}>
+                                <BlueButton
+                                    text={'Сохранить'}
+                                    className={CalculatorPageStyles.calculatorPage__button}
+                                />
+                                <WhiteButton2
+                                    text={'Скачать PDF'}
+                                    className={CalculatorPageStyles.calculatorPage__button}
+                                />
+                            </div>
 
-                    <ChangePage
-                        title={'Перейти к следующей странице'}
-                        style={{flexDirection: 'row-reverse'}}
-                        deg={'180'}
-                        click={() => router(`/scanner/${params.role}/${state.changePageDown(pages,activePage.title)}`)}
-                    />
-                </div>
-                <Footer/>
-            </div>
+                        </div>
+                        <div>
+                            <div style={{width:1400,maxWidth:'100vw',margin:'0 auto',display:'flex',justifyContent:'space-between'}}>
+                                <ChangePage
+                                    title={'Перейти к предыдущей странице'}
+                                    deg={'0'}
+                                    click={() => router(`/scanner/${state.changePageUp(pages,activePage.title)}`)}
+                                />
+
+                                <ChangePage
+                                    title={'Перейти к следующей странице'}
+                                    style={{flexDirection: 'row-reverse'}}
+                                    deg={'180'}
+                                    click={() => router(`/scanner/${state.changePageDown(pages,activePage.title)}`)}
+                                />
+                            </div>
+                            <Footer/>
+                        </div>
+                    </>
+                :
+                    <UnknowPage/>
+            }
         </div>
     );
 };

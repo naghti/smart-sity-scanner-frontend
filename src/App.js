@@ -25,33 +25,32 @@ import Loader from "./components/Loader";
 let App = observer(() => {
   return (
     <div className="App">
-      <TransitionGroup>
-
-        {
-          state.mobileMenu &&
-            <CSSTransition
-                key={1}
-                timeout={200}
-                classNames="item"
-            >
-              <MobileMenu/>
-            </CSSTransition>
-        }
-
-        {
-          state.loader &&
-            <CSSTransition
-                key={1}
-                timeout={200}
-                classNames="item"
-            >
-              <Loader/>
-            </CSSTransition>
-        }
-      </TransitionGroup>
       <Router>
+        <TransitionGroup>
+
+          {
+            state.mobileMenu &&
+              <CSSTransition
+                  key={1}
+                  timeout={200}
+                  classNames="item"
+              >
+                <MobileMenu/>
+              </CSSTransition>
+          }
+
+          {
+            state.loader &&
+              <CSSTransition
+                  key={1}
+                  timeout={200}
+                  classNames="loader"
+              >
+                <Loader/>
+              </CSSTransition>
+          }
+        </TransitionGroup>
         <Routes>
-          <Route path='/selectrole' element={<SelectRole/>} />
 
           <Route path='/' element={<About/>} />
 
@@ -66,6 +65,8 @@ let App = observer(() => {
           <Route path='/mailconfirmation' element={<MailConfirmation/>}/>
 
           <Route path='/control' element={<SelectControl/>}/>
+
+          <Route path='/selectrole' element={<SelectRole/>} />
 
           <Route path='/calculator' element={<Calculator/>}/>
           <Route path='/calculator/:page' element={<CalculatorPage/>}/>

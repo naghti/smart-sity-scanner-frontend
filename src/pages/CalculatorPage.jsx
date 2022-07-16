@@ -18,9 +18,11 @@ const CalculatorPage = () => {
     const router = useNavigate()
 
     function funcNull() {
-        alert(1)
+        state.loader = false
+        router('/signin')
     }
     function funcSuccess(result) {
+        state.loader = false
         if (result.email == 0) router('/mailconfirmation')
         else if(result.permissions != 2){
             router('/scanner')
@@ -28,6 +30,7 @@ const CalculatorPage = () => {
         else{}
     }
     useEffect(() => {
+        state.loader = true
         PostService.checkStorage(funcNull,funcSuccess)
     },[])
     
@@ -39,7 +42,7 @@ const CalculatorPage = () => {
     return (
         <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '100vh'}} key={Date.now()}>
             <div>
-                <Header/>
+                <Header home={'/control'}/>
                 <div className={styles.calculatorPage__titleBox} >
                     <h3
                         className={styles.calculatorPage__title}

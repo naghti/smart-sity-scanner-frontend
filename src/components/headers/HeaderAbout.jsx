@@ -5,7 +5,7 @@ import {useNavigate} from "react-router-dom";
 import burgerMenuImage from '../../images/burgerMenu.png'
 import state from "../../states/state";
 
-const HeaderAbout = ({active}) => {
+const HeaderAbout = ({active,home}) => {
 
     const router = useNavigate()
 
@@ -15,7 +15,12 @@ const HeaderAbout = ({active}) => {
     return (
         <div className={styles.header} style={{justifyContent:'space-between'}}>
             <div className={styles.header__logo}>
-                <img src={logoImage} alt="logo"/>
+                <img
+                    src={logoImage}
+                    alt="logo"
+                    onClick={() => router(`${home}`)}
+                    style={{cursor:'pointer'}}
+                />
             </div>
             <div className={styles.header__titleBox}>
                 <p
