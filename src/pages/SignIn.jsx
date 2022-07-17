@@ -29,7 +29,7 @@ const SignIn = () => {
 
         if (Authorization?.error == undefined) {
             localStorage.setItem('password', info.password);
-            localStorage.setItem('token', info.login);
+            localStorage.setItem('token', Authorization.token);
             router('/scanner')
         }
         else alert(Authorization.error)

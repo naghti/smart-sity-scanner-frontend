@@ -3,7 +3,7 @@
     height: 100vh;
     position: fixed;
     z-index: 999;
-    background: linear-gradient(45deg, rgb(152, 207, 195),#56b5b8);
+    background: white;
     display: flex;
     align-items: center;
     justify-content: center;

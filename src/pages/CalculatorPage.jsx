@@ -42,7 +42,7 @@ const CalculatorPage = () => {
     return (
         <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '100vh'}} key={Date.now()}>
             <div>
-                <Header home={'/control'}/>
+                <Header home={'/control'} permissions={2}/>
                 <div className={styles.calculatorPage__titleBox} >
                     <h3
                         className={styles.calculatorPage__title}
@@ -72,14 +72,40 @@ const CalculatorPage = () => {
                                                 {input.title}
                                             </p>
                                             <div style={{display: 'flex', margin: '10px 0'}}>
-                                                <input
-                                                    type="text"
-                                                    placeholder={'Введите количество '}
-                                                    className={styles.calculatorPage__input}
-                                                />
-                                                <div className={styles.calculatorPage__inputValue}>
-                                                    <p className={styles.calculatorPage__valueTitle}>шт</p>
-                                                </div>
+                                                {
+                                                    input.type
+                                                    ?
+                                                        <input
+                                                            type={input.type}
+                                                            placeholder={'Отметьте наличие'}
+                                                            className={styles.calculatorPage__input}
+                                                            style={{transform:'scale(1.5)'}}
+                                                            onClick={e => {
+                                                                page.values[input.change] =
+                                                                    page.values[input.change] == false
+                                                                        ?
+                                                                        true
+                                                                    :
+                                                                        false
+                                                            }}
+                                                            value={page.values[input.change]}
+                                                        />
+                                                    :
+                                                        <>
+                                                            <input
+                                                                type={'text'}
+                                                                placeholder={'Введите количество'}
+                                                                className={styles.calculatorPage__input}
+                                                                onChange={e => {
+                                                                    page.values[input.change] = e.target.value
+                                                                }}
+                                                                defaultValue={page.values[input.change]}
+                                                            />
+                                                            <div className={styles.calculatorPage__inputValue}>
+                                                                <p className={styles.calculatorPage__valueTitle}>шт</p>
+                                                            </div>
+                                                        </>
+                                                }
                                             </div>
                                         </div>
                                     ))
@@ -93,6 +119,7 @@ const CalculatorPage = () => {
                     <WhiteButton2
                         text={'Сохранить'}
                         className={styles.calculatorPage__button}
+                        onClick={() =>  PostService.sendCalculator(page.url,page.values)}
                     />
                     <BlueButton
                         text={'Сохранить и перейти к результатам'}

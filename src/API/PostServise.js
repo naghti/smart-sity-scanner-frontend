@@ -66,4 +66,18 @@ export default class PostService {
             }
         }
     }
+    static async sendCalculator(url,info) {
+        let StorageToken = localStorage.getItem('token');
+        console.log([info,StorageToken])
+        try {
+            const responce = await axios.post(`https://server.xn-----6kccnbhd7bxaidnbcayje0c.xn--p1ai/${url}`,
+                new URLSearchParams({info,StorageToken})
+            )
+            console.log(responce)
+            return responce.data
+        }catch (e) {
+            alert(`error: ${e}`)
+            console.error(e)
+        }
+    }
 }

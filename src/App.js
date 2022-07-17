@@ -22,6 +22,7 @@ import SmartCityScannerBusiness from "./pages/SmartCityScannerBusiness";
 import About from "./pages/About";
 import Feedback from "./pages/Feedback";
 import Loader from "./components/Loader";
+import Result from "./pages/Result";
 let App = observer(() => {
   return (
     <div className="App">
@@ -74,6 +75,8 @@ let App = observer(() => {
           <Route path='/scanner' element={<SmartCityScanner/>}/>
 
           <Route path='/scanner/:page' exact element={<ScannerPage/>}/>
+
+          <Route path='/result' exact element={<Result/>}/>
 
           <Route path='*' exact element={<UnknowPage/>} />
         </Routes>

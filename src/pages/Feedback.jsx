@@ -24,12 +24,19 @@ const Feedback = () => {
                             </p>
                             <p className={styles.about__paragraph} style={{maxWidth:'40%'}}>
                                 <span className={styles.about__paragraph_bold}>
-                                    Телефон:
-                                </span> 8(999)-999-99-99
+                                    Почта:
+                                </span> info@сканер-умного-города.рф
                             </p>
                             <p className={styles.about__paragraph} style={{maxWidth:'40%'}}>
                             </p>
                         </div>
+                        <p className={styles.about__paragraph}>
+                            <a
+                                href="https://t.me/+Rh1-Sx7OOyVlNWRi"
+                                style={{color:'rgb(2,176,208)',textDecoration:'none'}}
+                                target={'_blank'}
+                            >Наш telegram</a>
+                        </p>
                     </div>
                     <img
                         src={mapImage}
