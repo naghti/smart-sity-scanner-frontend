@@ -93,6 +93,79 @@
     z-index: 2;
 }
 
+
+@media (max-width: 1150px) {
+    .smartCityScanner__selectionSocialSphere {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+        gap: 10px 10px;
+        grid-template-areas:
+        "socialSphere1 socialSphere1 socialSphere2 socialSphere2"
+        "socialSphere3 socialSphere3 socialSphere4 socialSphere5"
+        "socialSphere6 socialSphere6 socialSphere7 socialSphere7"
+        "socialSphere8 socialSphere9 socialSphere9 socialSphere10"
+        "socialSphere11 socialSphere11 . .";
+    }
+
+    .smartCityScanner__selectionUrbanEconomy{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        gap: 10px 10px;
+        grid-template-areas:
+        "urbanEconomy1 urbanEconomy1 urbanEconomy2 urbanEconomy3"
+        "urbanEconomy4 urbanEconomy5 urbanEconomy5 urbanEconomy6"
+        "urbanEconomy7 urbanEconomy7 urbanEconomy8 urbanEconomy8";
+
+    }
+    .smartCityScanner__selectionBusiness {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 10px 10px;
+        grid-template-areas:
+        "business1 business1 business2 business3"
+        "business4 business4 . .";
+    }
+}
+@media (max-width: 1080px) {
+    .smartCityScanner__selectionSocialSphere {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+        gap: 10px 10px;
+        grid-template-areas:
+        "socialSphere1 socialSphere1 socialSphere2"
+        "socialSphere3 socialSphere3 socialSphere2"
+        "socialSphere4 socialSphere5 socialSphere6"
+        "socialSphere7 socialSphere7 socialSphere6"
+        "socialSphere8 socialSphere8 socialSphere9"
+        "socialSphere10 socialSphere10 socialSphere11";
+    }
+    .smartCityScanner__selectionBusiness {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        gap: 10px 10px;
+        grid-template-areas:
+        "business1 business1 business2"
+        "business3 business3 business2"
+        "business4 business4 .";
+    }
+    .smartCityScanner__selectionUrbanEconomy {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        gap: 10px 10px;
+        grid-template-areas:
+        "urbanEconomy1 urbanEconomy1 urbanEconomy2"
+        "urbanEconomy3 urbanEconomy4 urbanEconomy4"
+        "urbanEconomy5 urbanEconomy5 urbanEconomy6"
+        "urbanEconomy7 urbanEconomy8 urbanEconomy8";
+
+    }
+}
 @media (max-width: 710px) {
     .smartCityScanner__box{
         padding: 20px 30px 100px;

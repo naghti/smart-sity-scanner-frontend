@@ -71,9 +71,15 @@ export default class PostService {
         console.log([info,StorageToken])
         try {
             const responce = await axios.post(`https://server.xn-----6kccnbhd7bxaidnbcayje0c.xn--p1ai/${url}`,
-                new URLSearchParams({info,StorageToken})
+                new URLSearchParams(
+                {
+                        token: StorageToken,
+                        info: JSON.stringify(info)
+                    }
+                )
             )
-            console.log(responce)
+            console.log(responce.data)
+            // console.log(JSON.parse(responce.data.info))
             return responce.data
         }catch (e) {
             alert(`error: ${e}`)

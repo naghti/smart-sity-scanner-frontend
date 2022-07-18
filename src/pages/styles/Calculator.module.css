@@ -11,7 +11,25 @@
     "rei13 rei13 rei14 rei15 rei15 rei16"
     "rei17 rei17 rei14 rei18 rei18 rei16";
 }
-
+@media (max-width: 1150px) {
+    .сalculator__selection {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        gap: 10px 10px;
+        grid-template-areas:
+        "rei1 rei1 rei2 rei2"
+        "rei3 rei4 rei5 rei6"
+        "rei7 rei8 rei8 rei9"
+        "rei10 rei10 rei11 rei11"
+        "rei12 rei12 rei13 rei13"
+        "rei14 rei15 rei15 rei16"
+        "rei14 rei17 rei17 rei16"
+        "rei18 rei18 . .";
+    }
+}
+@media (max-width: 1080px) {
+}
 @media (max-width: 576px) {
     .сalculator__selection {
         display: flex;
