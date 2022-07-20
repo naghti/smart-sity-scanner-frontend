@@ -61,7 +61,7 @@ const MobileMenu = () => {
                             </h5>
                             <h5
                                 className={styles.mobileMenu__itemTitle}
-                                onClick={() => others('/signin')}
+                                onClick={() => others('/selectrole')}
                             >
                                 Войти
                             </h5>

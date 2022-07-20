@@ -74,7 +74,7 @@ const ScannerPage = () => {
                 activePage !== undefined ?
                     <>
                         <div>
-                            <Header home={home} permissions={2}/>
+                            <Header home={home} permissions={state.permissions}/>
                             <div className={CalculatorPageStyles.calculatorPage__titleBox} >
                                 <h3
                                     className={CalculatorPageStyles.calculatorPage__title}

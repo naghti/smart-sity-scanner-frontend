@@ -12,6 +12,7 @@ const SelectControl = () => {
 
 
     function funcNull() {
+        // если юзер не найден то выключаю лоадер и перенаправляю на вход
         state.loader = false
         router('/signin')
     }

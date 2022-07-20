@@ -37,7 +37,7 @@ const HeaderAbout = ({active,home}) => {
                 </p>
                 <p
                     className={styles.header__title}
-                    onClick={() => router(`/signin`)}
+                    onClick={() => router(`/selectrole`)}
                 >
                     Войти
                 </p>

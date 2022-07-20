@@ -22,7 +22,9 @@ import SmartCityScannerBusiness from "./pages/SmartCityScannerBusiness";
 import About from "./pages/About";
 import Feedback from "./pages/Feedback";
 import Loader from "./components/Loader";
-import Result from "./pages/Result";
+import ResultScanner from "./pages/ResultScanner";
+import ResultSelect from "./pages/ResultSelect";
+import ResultCalculator from "./pages/ResultCalculator";
 let App = observer(() => {
   return (
     <div className="App">
@@ -62,8 +64,10 @@ let App = observer(() => {
           <Route path='/signin' element={<SignIn/>}/>
 
           <Route path='/signup' element={<SignUp/>}/>
+          <Route path='/signup/:role' element={<SignUp/>}/>
 
           <Route path='/mailconfirmation' element={<MailConfirmation/>}/>
+          <Route path='/mailconfirmation/:role' element={<MailConfirmation/>}/>
 
           <Route path='/control' element={<SelectControl/>}/>
 
@@ -76,7 +80,9 @@ let App = observer(() => {
 
           <Route path='/scanner/:page' exact element={<ScannerPage/>}/>
 
-          <Route path='/result' exact element={<Result/>}/>
+          <Route path='/result' exact element={<ResultSelect/>}/>
+          <Route path='/result/calculator' exact element={<ResultCalculator/>}/>
+          <Route path='/result/scanner' exact element={<ResultScanner/>}/>
 
           <Route path='*' exact element={<UnknowPage/>} />
         </Routes>

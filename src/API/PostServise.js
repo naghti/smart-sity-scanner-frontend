@@ -10,12 +10,14 @@ export default class PostService {
                     phone:info.phone,
                     email:info.email,
                     password:info.password,
+                    permissions: info.permissions
                 })
             )
             console.log(responce)
             return responce.data
         }catch (e) {
             alert(`error: ${e}`)
+            return {error: `error: ${e}`}
             console.error(e)
         }
 
@@ -31,6 +33,7 @@ export default class PostService {
             return responce.data
         }catch (e) {
             alert(`error: ${e}`)
+            return {error: `error: ${e}`}
             console.error(e)
         }
     }
@@ -43,13 +46,18 @@ export default class PostService {
             return responce.data
         }catch (e) {
             alert(`error: ${e}`)
+            return {error: `error: ${e}`}
             console.error(e)
         }
     }
+
     static async checkStorage(funcNull,funcSuccess) {
         let StorageToken = localStorage.getItem('token');
         let StoragePassword = localStorage.getItem('password');
 
+        console.log([StorageToken,StoragePassword])
+
+        // если токена нет, то исполняется функция не найденного юзера
         if (StorageToken == null) {
             funcNull()
         }else{
@@ -57,18 +65,24 @@ export default class PostService {
                 login: StorageToken,
                 password: StoragePassword
             })
+            console.log(result)
+
+            // если имеется ошибка то удаляю инфу и использую функцию не найденного юзера
             if (result?.error != undefined) {
                 localStorage.removeItem('token')
                 localStorage.removeItem('password')
-                funcNull()
+                funcNull(result)
             }else{
+            // если все хорошо использую функцию что все хорошо
                 funcSuccess(result)
             }
         }
     }
     static async sendCalculator(url,info) {
         let StorageToken = localStorage.getItem('token');
+
         console.log([info,StorageToken])
+
         try {
             const responce = await axios.post(`https://server.xn-----6kccnbhd7bxaidnbcayje0c.xn--p1ai/${url}`,
                 new URLSearchParams(
@@ -83,6 +97,26 @@ export default class PostService {
             return responce.data
         }catch (e) {
             alert(`error: ${e}`)
+            return {error: `error: ${e}`}
+            console.error(e)
+        }
+    }
+    static async deleteUser(token) {
+        let StorageToken = localStorage.getItem('token');
+        console.log(StorageToken)
+        try {
+            const responce = await axios.post(`https://server.xn-----6kccnbhd7bxaidnbcayje0c.xn--p1ai/delete_user`,
+                new URLSearchParams(
+                {
+                        token: StorageToken,
+                    }
+                )
+            )
+            console.log(responce.data)
+            return responce.data
+        }catch (e) {
+            alert(`error: ${e}`)
+            return {error: `error: ${e}`}
             console.error(e)
         }
     }

@@ -18,7 +18,7 @@ const Header = ({permissions,home}) => {
         state.mobileMenu = false
         localStorage.removeItem('token')
         localStorage.removeItem('password')
-        router('/signin')
+        router('/selectrole')
     }
 
     return (
@@ -36,7 +36,12 @@ const Header = ({permissions,home}) => {
                     permissions == 2 &&
                     <>
                         <div className={styles.header__titleBox}>
-                            <p className={styles.header__title}>Личный кабинет</p>
+                            <p
+                                className={styles.header__title}
+                                onClick={() => router(`/result`)}
+                            >
+                                Личный кабинет
+                            </p>
                             <p
                                 className={styles.header__title}
                                 onClick={() => router(`/control`)}

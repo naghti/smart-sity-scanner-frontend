@@ -15,6 +15,7 @@ const SignIn = () => {
     const router = useNavigate()
     const params = useParams()
 
+    // нформация полей формы
     const [info,setInfo] = useState({
         login: '',
         password: '',
@@ -25,34 +26,41 @@ const SignIn = () => {
 
 
     async function login() {
+        // отправляю данные входа на сервер
         const Authorization = await PostService.postAuthorization(info)
 
+        // если ошибок нет то
         if (Authorization?.error == undefined) {
             localStorage.setItem('password', info.password);
             localStorage.setItem('token', Authorization.token);
             router('/scanner')
         }
+        // если если ошибки есть то вывожу их на страницу
         else alert(Authorization.error)
 
     }
 
     function funcNull() {
+        // если юзер не найден то просто выключаю лоадер
         state.loader = false
-
     }
     function funcSuccess(result) {
+        // если юзер найден то
         state.loader = false
         if (result.email == 0) router('/mailconfirmation')
         else if(result.permissions == 2){
+            // если аккаунт принадлежит городской администрации то перенаправляю на выбор действий
             state.permissions = 2
             router('/control')
         }
         else{
+            // иначе перенаправляю на сканнер
             router('/scanner')
         }
     }
     useEffect(() => {
         state.loader = true
+        // ищю юзера в бд
         PostService.checkStorage(funcNull,funcSuccess)
     },[])
 
@@ -102,7 +110,7 @@ const SignIn = () => {
                     <p className={styles.index__grayText}>У вас все еще нет аккаунта?</p>
                     <p
                         className={styles.index__grayText + ' ' + styles.index__darkText}
-                        onClick={() => router('/signup')}
+                        onClick={() => router('/selectrole')}
                     >Зарегистрироваться</p>
                 </div>
 
