@@ -39,7 +39,12 @@ const SelectControl = () => {
     return (
         <div className={styles.index}>
             <div className={styles.index__box}>
-                <img src={townImage} alt="town" className={styles.index__image}/>
+                <img
+                    src={townImage}
+                    alt="town"
+                    className={styles.index__image}
+                    onClick={ () => router('/')}
+                />
                 <h2 className={styles.index__title}>Сканер Умного Города</h2>
 
                 <div className={styles.index__form}>

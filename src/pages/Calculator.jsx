@@ -20,6 +20,7 @@ const Calculator = () => {
     }
     function funcSuccess(result) {
         state.loader = false
+        state.permissions = result.permissions
         if (result.email == 0) router('/mailconfirmation')
         else if(result.permissions != 2){
             router('/scanner')
@@ -46,7 +47,7 @@ const Calculator = () => {
                     Данный раздел позволяет рассчитать показатели цифровизации городского хозяйства согласно стандарту Умного Города в
                     соответствии с приказом Минстроя №357/пр от 11.05.2022 г. </p>
                 <div style={{margin:'20px 0',display:'flex', justifyContent:'flex-end'}}>
-                    <AccountStatus status={'Городская администрация'} />
+                    <AccountStatus status={'Городская администрация'} permissions={state.permissions}/>
                 </div>
                 <div className={calculatorStyles.сalculator__selection}>
                     {

@@ -22,7 +22,6 @@ const Footer = ({...props}) => {
             </div>
             <div className={styles.footer__imageBox}>
                 <img src={logoImage} alt="logo" className={styles.footer__image}/>
-                <img src={logo2Image} alt="logo" className={styles.footer__image}/>
             </div>
         </div>
     );

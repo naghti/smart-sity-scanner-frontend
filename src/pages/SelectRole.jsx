@@ -10,10 +10,10 @@ const SelectRole = () => {
 
 
     function funcNull() {
-        alert('SelectRole юзер не найден')
+        // alert('SelectRole юзер не найден')
     }
     function funcSuccess(result) {
-        alert('SelectRole юзер найден???')
+        // alert('SelectRole юзер найден???')
         if (result.email == 0) router('/mailconfirmation')
         else{
             console.log(result)

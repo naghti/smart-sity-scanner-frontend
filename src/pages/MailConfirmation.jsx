@@ -54,7 +54,7 @@ const MailConfirmation = () => {
         // если юзер пытается подтвердить почту но его нету
         // то кидаю на вход
         console.log(result)
-        alert('MailConfirmation юзер не найден??? ')
+        // alert('MailConfirmation юзер не найден??? ')
         router('/signin')
     }
     function funcSuccess(result) {

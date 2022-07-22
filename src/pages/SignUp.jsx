@@ -38,7 +38,7 @@ const SignIn = () => {
         phone: '',
         email: '',
         password: '',
-        permissions: 2
+        permissions: roles[params.role] ? roles[params.role] : 1
     })
 
     // информация раннее заполненой формы регистрации на случай перезагрузки страницы и тд...
@@ -175,7 +175,7 @@ const SignIn = () => {
                     <div style={{margin:'0 0 5px'}}>
                         <ReCAPTCHA
                             sitekey="6Lf7fQMhAAAAAKnyHeyUrt74Ljj_Ux2suMnEePXt"
-                            onChange={() => setCaptcha(!captcha)}
+                            onChange={() => setCaptcha(false)}
                         />
                     </div>
                     <LightBlueButton

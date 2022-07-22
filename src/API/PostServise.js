@@ -79,6 +79,7 @@ export default class PostService {
         }
     }
     static async sendCalculator(url,info) {
+        alert(url)
         let StorageToken = localStorage.getItem('token');
 
         console.log([info,StorageToken])
@@ -109,6 +110,26 @@ export default class PostService {
                 new URLSearchParams(
                 {
                         token: StorageToken,
+                    }
+                )
+            )
+            console.log(responce.data)
+            return responce.data
+        }catch (e) {
+            alert(`error: ${e}`)
+            return {error: `error: ${e}`}
+            console.error(e)
+        }
+    }
+    static async changePermissions(permissions) {
+        let StorageToken = localStorage.getItem('token');
+        console.log(StorageToken)
+        try {
+            const responce = await axios.post(`https://server.xn-----6kccnbhd7bxaidnbcayje0c.xn--p1ai/change_permissions`,
+                new URLSearchParams(
+                {
+                        token: StorageToken,
+                        permissions: permissions
                     }
                 )
             )

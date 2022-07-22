@@ -5,8 +5,8 @@ class CalculatorButtonsInfo {
         makeAutoObservable(this)
     }
     info = {
-        url: 'обратная_связь_с_жителями',
         "Обратная связь с гражданами": {
+            url: 'обратная_связь_с_жителями',
             values: {
                 L1: '',
                 SL1: '',

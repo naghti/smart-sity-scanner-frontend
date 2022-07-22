@@ -28,6 +28,7 @@ const   SmartCityScanner = () => {
     }
     function funcSuccess(result) {
         state.loader = false
+        state.permissions = result.permissions
         setPermissions(result.permissions)
         if (result.email == 0) router('/mailconfirmation')
         else if(result.permissions == 0){
@@ -66,7 +67,7 @@ const   SmartCityScanner = () => {
                             {info.paragraph}
                         </p>
                         <div style={{margin: '20px 0', display: 'flex', justifyContent: 'flex-end'}}>
-                            <AccountStatus status={info.status}/>
+                            <AccountStatus status={info.status} permissions={state.permissions}/>
                         </div>
 
                         {

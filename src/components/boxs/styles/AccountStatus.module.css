@@ -4,6 +4,13 @@
     border-radius: 10px;
     display: flex;
     width: fit-content;
+    align-items: center;
+}
+.accountStatus__changeStatus{
+    margin-right: 10px;
+    width: 42px;
+    height: 42px;
+    pointer-events: none;
 }
 .accountStatus__text{
     font-family: 'Inter';
@@ -21,4 +28,18 @@
     line-height: 29px;
     color: #FFFFFF;
     margin-right: 5px;
+}
+.accountStatus__box{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+@media (max-width: 576px) {
+    .accountStatus__box{
+        flex-direction: column-reverse;
+    }
+    .accountStatus__changeStatus{
+        margin-top: 10px;
+    }
 }
