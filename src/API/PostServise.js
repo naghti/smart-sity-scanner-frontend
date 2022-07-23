@@ -1,4 +1,5 @@
 import axios from "axios";
+import state from "../states/state";
 
 export default class PostService {
 
@@ -79,7 +80,7 @@ export default class PostService {
         }
     }
     static async sendCalculator(url,info) {
-        alert(url)
+        // alert(url)
         let StorageToken = localStorage.getItem('token');
 
         console.log([info,StorageToken])
@@ -140,5 +141,22 @@ export default class PostService {
             return {error: `error: ${e}`}
             console.error(e)
         }
+    }
+    static async getWidgetPage(link) {
+        fetch(`https://${link}`)
+            .then(function(response) {
+                return response.text()
+            })
+            .then(function(html) {
+                var parser = new DOMParser();
+                var doc = parser.parseFromString(html, "text/html");
+                console.log(doc);
+                state.widget = !state.widget
+                state.widgetInfo = doc
+                return(doc);
+            })
+            .catch(function(err) {
+                return {error:`Failed to fetch page:${err} `}
+            });
     }
 }

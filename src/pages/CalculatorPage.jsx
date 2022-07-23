@@ -39,6 +39,26 @@ const CalculatorPage = () => {
     if (page == undefined) return <UnknowPage/>
     window.scrollTo(0, 0);
 
+
+    async function save (url,values) {
+        const Result = await PostService.sendCalculator(url,values)
+
+        if (Result?.error == undefined) {
+            console.log(Result)
+        }
+        else alert(Result.error)
+    }
+
+    async function saveAndGo (url,values) {
+        const Result = await PostService.sendCalculator(url,values)
+        const Resulti = await PostService.getWidgetPage(Result.link)
+
+        if (Resulti?.error == undefined) {
+            console.log(Resulti)
+        }
+        else alert(Resulti.error)
+    }
+
     return (
         <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '100vh'}} key={Date.now()}>
             <div>
@@ -119,11 +139,12 @@ const CalculatorPage = () => {
                     <WhiteButton2
                         text={'Сохранить'}
                         className={styles.calculatorPage__button}
-                        onClick={() =>  PostService.sendCalculator(page.url,page.values)}
+                        onClick={() =>  save(page.url,page.values)}
                     />
                     <BlueButton
                         text={'Сохранить и перейти к результатам'}
                         className={styles.calculatorPage__button}
+                        onClick={() =>  saveAndGo(page.url,page.values)}
                     />
                     <BlueButton
                         img={downloadImage}

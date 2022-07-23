@@ -25,6 +25,7 @@ import Loader from "./components/Loader";
 import ResultScanner from "./pages/ResultScanner";
 import ResultSelect from "./pages/ResultSelect";
 import ResultCalculator from "./pages/ResultCalculator";
+import Widget from "./components/Widget";
 let App = observer(() => {
   return (
     <div className="App">
@@ -45,11 +46,22 @@ let App = observer(() => {
           {
             state.loader &&
               <CSSTransition
-                  key={1}
+                  key={2}
                   timeout={200}
                   classNames="loader"
               >
                 <Loader/>
+              </CSSTransition>
+          }
+
+          {
+            state.widget &&
+              <CSSTransition
+                  key={3}
+                  timeout={200}
+                  classNames="item"
+              >
+                <Widget/>
               </CSSTransition>
           }
         </TransitionGroup>

@@ -384,6 +384,8 @@ class State {
     loader = false
     startPage = false
     info = undefined
+    widget = false
+    widgetInfo = undefined
     permissions = 0
 
 }

@@ -18,7 +18,7 @@ const MobileMenu = () => {
         state.mobileMenu = false
         if (state.permissions == 0) router('/scanner')
         if (state.permissions == 1) router('/scanner')
-        if (state.permissions == 2) router('/calculator')
+        if (state.permissions == 2) router('/control')
     }
 
     function exit() {
@@ -67,19 +67,31 @@ const MobileMenu = () => {
                             </h5>
                         </div>
                     :
-                        <div className={styles.mobileMenu__itemsBox}>
+                        <div className={styles.mobileMenu__itemsBox} style={{height:400}}>
                             <h5
                                 className={styles.mobileMenu__itemTitle}
                                 onClick={() => results()}
                                 style={{display: state.permissions == 2 ? 'block' : 'none'}}
                             >
-                                Результаты
+                                Личный кабинет
                             </h5>
                             <h5
                                 className={styles.mobileMenu__itemTitle}
                                 onClick={() => changePage()}
                             >
-                                Перейти в другой раздел
+                                Возможности
+                            </h5>
+                            <h5
+                                className={styles.mobileMenu__itemTitle}
+                                onClick={() => others('/')}
+                            >
+                                Главная
+                            </h5>
+                            <h5
+                                className={styles.mobileMenu__itemTitle}
+                                onClick={() => others('/feedback')}
+                            >
+                                Обратная связь
                             </h5>
                             <h5
                                 className={styles.mobileMenu__itemTitle}

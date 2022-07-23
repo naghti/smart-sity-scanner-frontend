@@ -56,12 +56,14 @@ const   SmartCityScanner = () => {
         <div>
             {
                 state.loader == false &&
-                <>
-                    <Header permissions={permissions} home={home}/>
-                    <HeaderTitle
-                        background={backgroundImage}
-                        text={info.title}
-                    />
+                <div style={{height: '100vh',display:'flex',flexDirection:'column',justifyContent:'space-between'}}>
+                    <div>
+                        <Header permissions={permissions} home={home}/>
+                        <HeaderTitle
+                            background={backgroundImage}
+                            text={info.title}
+                        />
+                    </div>
                     <div className={styles.smartCityScanner__box}>
                         <p className={styles.smartCityScanner__title}>
                             {info.paragraph}
@@ -116,7 +118,7 @@ const   SmartCityScanner = () => {
 
                     </div>
                     <Footer/>
-                </>
+                </div>
             }
 
         </div>
